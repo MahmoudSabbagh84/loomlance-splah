@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoomLance - Weave it all together</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Force scroll to top on page load/refresh
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+        });
+        
+        // Also scroll to top when page is refreshed
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
+        });
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="LoomLance" class="logo-img">
+                <span class="logo-text"><span class="loom">Loom</span><span class="lance">Lance</span></span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="https://app.loomlance.com" class="nav-link sign-in">Sign In</a>
+                <a href="#" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Weave it all together
+                </h1>
+                <p class="hero-subtitle">
+                    The simple, beautifully organized hub for freelancers to manage clients, contracts, tasks, and payments.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary">Start Free Trial</button>
+                    <button class="btn-secondary">Watch Demo</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Active Freelancers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Projects Managed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$2M+</span>
+                        <span class="stat-label">Payments Processed</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="dashboard-header">
+                        <div class="dashboard-nav">
+                            <div class="nav-item active">Dashboard</div>
+                            <div class="nav-item">Clients</div>
+                            <div class="nav-item">Projects</div>
+                            <div class="nav-item">Invoices</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="dashboard-card">
+                            <h3>Recent Activity</h3>
+                            <div class="activity-item">
+                                <div class="activity-dot"></div>
+                                <span>New client added</span>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-dot"></div>
+                                <span>Invoice #1234 sent</span>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-dot"></div>
+                                <span>Project deadline reminder</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>This Month</h3>
+                            <div class="metric">
+                                <span class="metric-value">$8,450</span>
+                                <span class="metric-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everything you need to succeed</h2>
+                <p>LoomLance brings all your freelance tools together in one beautiful, organized workspace.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Client Management</h3>
+                    <p>Keep all your client information, communication history, and project details in one place.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Smart Contracts</h3>
+                    <p>Create, send, and track contracts with built-in templates and e-signature integration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Task Tracking</h3>
+                    <p>Organize your work with intuitive project boards and deadline management tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Payment Processing</h3>
+                    <p>Send invoices, track payments, and get paid faster with integrated payment solutions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics & Reports</h3>
+                    <p>Track your performance with detailed insights and beautiful reports for your business.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Bank-level security with 99.9% uptime ensures your data is always safe and accessible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p class="about-intro">At <span class="loom">Loom</span><span class="lance">Lance</span>, we believe freelancers shouldn't have to waste precious hours stitching together scattered tools just to run their business. That's why we created a single, seamless dashboard where you can manage clients, contracts, tasks, and invoices — all in one place.</p>
+                    
+                    <p>Freelancers are the backbone of today's creative and digital economy. Designers, developers, writers, consultants, and creators all share the same struggle: too many tabs, too many apps, and not enough time to focus on what matters most — the work itself.</p>
+                    
+                    <p><span class="loom">Loom</span><span class="lance">Lance</span> was built to change that. Our mission is to weave the freelance experience into one smooth flow, helping you stay organized, get paid faster, and keep your client relationships strong.</p>
+                    
+                    <p>We're not just another management tool — we're your digital workspace, your accountability partner, and your biggest supporter as you grow your independent career. With <span class="loom">Loom</span><span class="lance">Lance</span>, you can spend less time chasing invoices and juggling deadlines, and more time doing the work you love.</p>
+                </div>
+                <div class="about-visual">
+                    <div class="about-card">
+                        <div class="about-icon">🎯</div>
+                        <h3>Our Mission</h3>
+                        <p>Weave the freelance experience into one smooth flow</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">💪</div>
+                        <h3>Your Support</h3>
+                        <p>Your digital workspace and accountability partner</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">⚡</div>
+                        <h3>Focus on Work</h3>
+                        <p>Less time managing, more time creating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to weave it all together?</h2>
+                <p>Join thousands of freelancers who have simplified their workflow with <span class="loom">Loom</span><span class="lance">Lance</span>.</p>
+                <div class="cta-actions">
+                    <button class="btn-primary large">Start Your Free Trial</button>
+                    <p class="cta-note">No credit card required • 14-day free trial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><span class="loom">Loom</span><span class="lance">Lance</span></h3>
+                    <p>Weave it all together</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#">Features</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Integrations</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Careers</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#">Help Center</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Status</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LoomLance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
