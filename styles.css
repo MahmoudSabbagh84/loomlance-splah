@@ -47,6 +47,20 @@ body {
     gap: 12px;
 }
 
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.logo-link:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
 .logo-img {
     height: 80px;
     width: auto;
@@ -58,11 +72,11 @@ body {
 }
 
 .loom {
-    color: #2D3E50;
+    color: #F39C12;
 }
 
 .lance {
-    color: #BDC3C7;
+    color: #E67E22;
 }
 
 .nav-menu {
@@ -114,6 +128,217 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Floating Background Animation */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(243, 156, 18, 0.25), rgba(243, 156, 18, 0.1));
+    animation: floatRandom 15s infinite ease-in-out;
+    box-shadow: 0 4px 20px rgba(243, 156, 18, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(243, 156, 18, 0.2);
+}
+
+.shape-1 {
+    width: 100px;
+    height: 100px;
+    top: 15%;
+    left: 5%;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.shape-2 {
+    width: 140px;
+    height: 140px;
+    top: 55%;
+    left: 75%;
+    animation-delay: -3s;
+    animation-duration: 22s;
+}
+
+.shape-3 {
+    width: 80px;
+    height: 80px;
+    top: 75%;
+    left: 15%;
+    animation-delay: -7s;
+    animation-duration: 16s;
+}
+
+.shape-4 {
+    width: 120px;
+    height: 120px;
+    top: 5%;
+    left: 65%;
+    animation-delay: -11s;
+    animation-duration: 20s;
+}
+
+.shape-5 {
+    width: 60px;
+    height: 60px;
+    top: 35%;
+    left: 2%;
+    animation-delay: -5s;
+    animation-duration: 14s;
+}
+
+.shape-6 {
+    width: 110px;
+    height: 110px;
+    top: 65%;
+    left: 55%;
+    animation-delay: -9s;
+    animation-duration: 19s;
+}
+
+.shape-7 {
+    width: 70px;
+    height: 70px;
+    top: 25%;
+    left: 85%;
+    animation-delay: -13s;
+    animation-duration: 17s;
+    animation-name: floatRandom2;
+}
+
+.shape-8 {
+    width: 90px;
+    height: 90px;
+    top: 85%;
+    left: 45%;
+    animation-delay: -6s;
+    animation-duration: 21s;
+    animation-name: floatRandom3;
+}
+
+.shape-9 {
+    width: 50px;
+    height: 50px;
+    top: 45%;
+    left: 25%;
+    animation-delay: -14s;
+    animation-duration: 13s;
+    animation-name: floatRandom4;
+}
+
+@keyframes floatRandom {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translate(30px, -40px) rotate(90deg) scale(1.1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-20px, -60px) rotate(180deg) scale(0.9);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translate(40px, -20px) rotate(270deg) scale(1.05);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(360deg) scale(1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes floatRandom2 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    20% {
+        transform: translate(-25px, 35px) rotate(72deg) scale(1.2);
+        opacity: 0.5;
+    }
+    40% {
+        transform: translate(45px, 20px) rotate(144deg) scale(0.8);
+        opacity: 0.6;
+    }
+    60% {
+        transform: translate(15px, -45px) rotate(216deg) scale(1.1);
+        opacity: 0.4;
+    }
+    80% {
+        transform: translate(-35px, -15px) rotate(288deg) scale(0.95);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(360deg) scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes floatRandom3 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+        opacity: 0.6;
+    }
+    30% {
+        transform: translate(50px, -30px) rotate(108deg) scale(1.3);
+        opacity: 0.4;
+    }
+    60% {
+        transform: translate(-30px, -50px) rotate(216deg) scale(0.7);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(360deg) scale(1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes floatRandom4 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+        opacity: 0.9;
+    }
+    15% {
+        transform: translate(20px, -25px) rotate(54deg) scale(1.4);
+        opacity: 0.5;
+    }
+    30% {
+        transform: translate(-15px, -35px) rotate(108deg) scale(0.6);
+        opacity: 0.7;
+    }
+    45% {
+        transform: translate(35px, 10px) rotate(162deg) scale(1.2);
+        opacity: 0.3;
+    }
+    60% {
+        transform: translate(10px, 30px) rotate(216deg) scale(0.8);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translate(-25px, 20px) rotate(270deg) scale(1.1);
+        opacity: 0.4;
+    }
+    90% {
+        transform: translate(-10px, -20px) rotate(324deg) scale(0.9);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(360deg) scale(1);
+        opacity: 0.9;
+    }
 }
 
 .hero-container {
@@ -124,6 +349,8 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content {
@@ -482,11 +709,11 @@ body {
 
 /* LoomLance custom colors throughout the site */
 .loom {
-    color: #2D3E50;
+    color: #F39C12;
 }
 
 .lance {
-    color: #BDC3C7;
+    color: #E67E22;
 }
 
 /* CTA Section */
@@ -561,11 +788,11 @@ body {
 }
 
 .footer-brand .loom {
-    color: #2D3E50;
+    color: #F39C12;
 }
 
 .footer-brand .lance {
-    color: #BDC3C7;
+    color: #E67E22;
 }
 
 .footer-brand p {
@@ -680,9 +907,156 @@ body {
     }
 }
 
+/* Enhanced Animations and Micro-interactions */
+
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+/* Enhanced Button Animations */
+.btn-primary, .btn-secondary, .nav-cta {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover, .btn-secondary:hover, .nav-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active, .btn-secondary:active, .nav-cta:active {
+    transform: translateY(-1px);
+}
+
+/* Card Hover Animations */
+.feature-card, .about-card, .pricing-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover, .about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Hover Animations */
+.feature-icon, .about-icon, .tier-icon, .contact-icon {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon,
+.about-card:hover .about-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Text Reveal Animation */
+.hero-title, .hero-subtitle {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+    animation-delay: 0.2s;
+}
+
+.hero-subtitle {
+    animation-delay: 0.4s;
+}
+
+.hero-actions {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.6s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered Animation for Feature Cards */
+.feature-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s both; }
+.feature-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s both; }
+.feature-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s both; }
+.feature-card:nth-child(4) { animation: fadeInUp 0.6s ease-out 0.4s both; }
+.feature-card:nth-child(5) { animation: fadeInUp 0.6s ease-out 0.5s both; }
+.feature-card:nth-child(6) { animation: fadeInUp 0.6s ease-out 0.6s both; }
+
+/* Loading Animation for Forms */
+.form-input:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+}
+
+/* Pulse Animation for CTA Elements */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(243, 156, 18, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(243, 156, 18, 0);
+    }
+}
+
+.btn-primary {
+    animation: pulse 2s infinite;
+}
+
+/* Scroll-triggered Animations */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced Focus States */
+button:focus, input:focus, textarea:focus, select:focus {
+    outline: 2px solid #F39C12;
+    outline-offset: 2px;
+}
+
+/* Smooth Transitions for All Interactive Elements */
+a, button, input, textarea, select {
+    transition: all 0.2s ease;
+}
+
+/* Hover Effects for Navigation */
+.nav-link:hover {
+    color: #F39C12;
+    transform: translateY(-1px);
+}
+
+/* Enhanced Pricing Card Animations */
+.pricing-card.featured {
+    animation: featuredPulse 3s ease-in-out infinite;
+}
+
+@keyframes featuredPulse {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(243, 156, 18, 0.2);
+    }
+    50% {
+        box-shadow: 0 15px 40px rgba(243, 156, 18, 0.3);
+    }
 }
 
 /* Reset scroll position on page load */
@@ -730,5 +1104,130 @@ body {
 
 .btn-primary:hover::before, .btn-secondary:hover::before, .nav-cta:hover::before {
     left: 100%;
+}
+
+/* Lucide Icons Styling */
+.feature-icon i,
+.about-icon i,
+.tier-icon i,
+.contact-icon i,
+.signin-feature-icon i,
+.signin-emoji i {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.feature-icon i {
+    color: #F39C12;
+}
+
+.about-icon i {
+    color: #F39C12;
+}
+
+.tier-icon i {
+    color: #F39C12;
+}
+
+.contact-icon i {
+    color: #F39C12;
+}
+
+.signin-feature-icon i {
+    color: #F39C12;
+}
+
+.signin-emoji i {
+    color: #F39C12;
+    width: 48px;
+    height: 48px;
+}
+
+/* Icon alignment fixes */
+.feature-icon,
+.about-icon,
+.tier-icon,
+.contact-icon,
+.signin-feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Feature list alignment for pricing page */
+.tier-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.feature-text {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-height: 20px;
+}
+
+/* Specific icon styling for different contexts */
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(243, 156, 18, 0.1);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Pricing page specific feature icon styling */
+.tier-features .feature-icon {
+    width: 20px;
+    height: 20px;
+    background: none;
+    border-radius: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+.about-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(243, 156, 18, 0.1);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.tier-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(243, 156, 18, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.signin-feature-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.signin-emoji {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 

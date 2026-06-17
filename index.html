@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPWEBECZBQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DPWEBECZBQ');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoomLance - Weave it all together</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script>
         // Force scroll to top on page load/refresh
         window.addEventListener('load', function() {
             window.scrollTo(0, 0);
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         });
         
         // Also scroll to top when page is refreshed
         window.addEventListener('beforeunload', function() {
             window.scrollTo(0, 0);
         });
+        
+        // Scroll-triggered animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.scroll-reveal');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+        
+        // Initial check
+        handleScrollAnimations();
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', handleScrollAnimations);
     </script>
 </head>
 <body>
@@ -23,45 +59,59 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="logo.png" alt="LoomLance" class="logo-img">
-                <span class="logo-text"><span class="loom">Loom</span><span class="lance">Lance</span></span>
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="LoomLance" class="logo-img">
+                    <span class="logo-text"><span class="loom">Loom</span><span class="lance">Lance</span></span>
+                </a>
             </div>
             <div class="nav-menu">
                 <a href="#features" class="nav-link">Features</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="https://app.loomlance.com" class="nav-link sign-in">Sign In</a>
-                <a href="#" class="nav-cta">Get Started</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="signin.html" class="nav-link sign-in">Sign In</a>
+                <a href="signup.html" class="nav-cta">Get Started</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-background">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+            <div class="floating-shape shape-5"></div>
+            <div class="floating-shape shape-6"></div>
+            <div class="floating-shape shape-7"></div>
+            <div class="floating-shape shape-8"></div>
+            <div class="floating-shape shape-9"></div>
+        </div>
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Weave it all together
+                    Code. Ship. Get Paid. Repeat.
                 </h1>
                 <p class="hero-subtitle">
-                    The simple, beautifully organized hub for freelancers to manage clients, contracts, tasks, and payments.
+                    The developer-first platform that handles your business so you can focus on what you do best: building amazing things. No more juggling 12 different tools just to send an invoice.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn-primary">Start Free Trial</button>
-                    <button class="btn-secondary">Watch Demo</button>
+                    <a href="signup.html" class="btn-primary" style="display: inline-block; text-decoration: none;">Start Free Trial</a>
+                    <a href="signup.html?plan=freelancer" class="btn-secondary" style="display: inline-block; text-decoration: none;">Watch Demo</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="stat-number">10K+</span>
-                        <span class="stat-label">Active Freelancers</span>
+                        <span class="stat-number">5K+</span>
+                        <span class="stat-label">Developers</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">50K+</span>
-                        <span class="stat-label">Projects Managed</span>
+                        <span class="stat-number">25K+</span>
+                        <span class="stat-label">Projects Shipped</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">$2M+</span>
-                        <span class="stat-label">Payments Processed</span>
+                        <span class="stat-number">$1.2M+</span>
+                        <span class="stat-label">Dev Hours Billed</span>
                     </div>
                 </div>
             </div>
@@ -105,76 +155,94 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features">
+    <section id="features" class="features scroll-reveal">
         <div class="container">
             <div class="section-header">
-                <h2>Everything you need to succeed</h2>
-                <p>LoomLance brings all your freelance tools together in one beautiful, organized workspace.</p>
+                <h2>Built by developers, for developers</h2>
+                <p>Stop context-switching between 12 different apps. LoomLance is your single source of truth for client work. Think of it as your business API.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Client Management</h3>
-                    <p>Keep all your client information, communication history, and project details in one place.</p>
+                    <div class="feature-icon">
+                        <i data-lucide="git-branch"></i>
+                    </div>
+                    <h3>GitHub/GitLab Integration</h3>
+                    <p>Link repos to projects. Show clients real progress with commit timelines. Finally, a way to prove you're not just browsing Stack Overflow all day.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3>Smart Contracts</h3>
-                    <p>Create, send, and track contracts with built-in templates and e-signature integration.</p>
+                    <div class="feature-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Scope Creep Protection</h3>
+                    <p>Client wants "just a small change"? Create professional change requests with one click. No more free work disguised as "quick fixes".</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <h3>Task Tracking</h3>
-                    <p>Organize your work with intuitive project boards and deadline management tools.</p>
+                    <div class="feature-icon">
+                        <i data-lucide="shield"></i>
+                    </div>
+                    <h3>Secure Credential Vault</h3>
+                    <p>Store API keys, server credentials, and client logins securely. Share access without revealing passwords. Your security team will thank you.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Payment Processing</h3>
-                    <p>Send invoices, track payments, and get paid faster with integrated payment solutions.</p>
+                    <div class="feature-icon">
+                        <i data-lucide="credit-card"></i>
+                    </div>
+                    <h3>Smart Invoicing</h3>
+                    <p>Time tracking that doesn't suck. Automatic invoicing based on GitHub commits or manual hours. Get paid for every line of code.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Analytics & Reports</h3>
-                    <p>Track your performance with detailed insights and beautiful reports for your business.</p>
+                    <div class="feature-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3>Developer Analytics</h3>
+                    <p>Track your most profitable project types, client satisfaction, and coding velocity. Data-driven decisions for your dev career.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Secure & Reliable</h3>
-                    <p>Bank-level security with 99.9% uptime ensures your data is always safe and accessible.</p>
+                    <div class="feature-icon">
+                        <i data-lucide="palette"></i>
+                    </div>
+                    <h3>White-Label Everything</h3>
+                    <p>Custom branding on all client-facing documents. Look like the professional studio you are, not a freelancer using free tools.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Us Section -->
-    <section id="about" class="about">
+    <section id="about" class="about scroll-reveal">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2>About Us</h2>
-                    <p class="about-intro">At <span class="loom">Loom</span><span class="lance">Lance</span>, we believe freelancers shouldn't have to waste precious hours stitching together scattered tools just to run their business. That's why we created a single, seamless dashboard where you can manage clients, contracts, tasks, and invoices — all in one place.</p>
+                    <h2>Built by Devs Who Get It</h2>
+                    <p class="about-intro">We're developers who got tired of explaining to non-technical tools why our workflow is different. <span class="loom">Loom</span><span class="lance">Lance</span> was born from our own frustration with generic freelance tools that clearly weren't built by people who understand the developer experience.</p>
                     
-                    <p>Freelancers are the backbone of today's creative and digital economy. Designers, developers, writers, consultants, and creators all share the same struggle: too many tabs, too many apps, and not enough time to focus on what matters most — the work itself.</p>
+                    <p>You know the pain: juggling Slack, GitHub, Trello, QuickBooks, and 8 other tools just to manage one client project. Explaining to clients why their "simple" request will take 3 days. Losing track of which API keys go with which project. We've been there.</p>
                     
-                    <p><span class="loom">Loom</span><span class="lance">Lance</span> was built to change that. Our mission is to weave the freelance experience into one smooth flow, helping you stay organized, get paid faster, and keep your client relationships strong.</p>
+                    <p><span class="loom">Loom</span><span class="lance">Lance</span> speaks your language. We understand that your GitHub commits tell a story. That scope creep is real. That you need to store credentials securely. That your time tracking should integrate with your actual workflow, not fight against it.</p>
                     
-                    <p>We're not just another management tool — we're your digital workspace, your accountability partner, and your biggest supporter as you grow your independent career. With <span class="loom">Loom</span><span class="lance">Lance</span>, you can spend less time chasing invoices and juggling deadlines, and more time doing the work you love.</p>
+                    <p>We're not trying to be everything to everyone. We're laser-focused on making the business side of development as elegant as your code. Because when the admin work flows smoothly, you can focus on what you do best: building amazing things.</p>
                 </div>
                 <div class="about-visual">
                     <div class="about-card">
-                        <div class="about-icon">🎯</div>
-                        <h3>Our Mission</h3>
-                        <p>Weave the freelance experience into one smooth flow</p>
+                        <div class="about-icon">
+                            <i data-lucide="target"></i>
+                        </div>
+                        <h3>Developer-First</h3>
+                        <p>Built for how developers actually work, not how consultants think they should</p>
                     </div>
                     <div class="about-card">
-                        <div class="about-icon">💪</div>
-                        <h3>Your Support</h3>
-                        <p>Your digital workspace and accountability partner</p>
+                        <div class="about-icon">
+                            <i data-lucide="code"></i>
+                        </div>
+                        <h3>Your Business API</h3>
+                        <p>Clean, logical interface for the messy world of client management</p>
                     </div>
                     <div class="about-card">
-                        <div class="about-icon">⚡</div>
-                        <h3>Focus on Work</h3>
-                        <p>Less time managing, more time creating</p>
+                        <div class="about-icon">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <h3>Ship Faster</h3>
+                        <p>Less time in spreadsheets, more time in your IDE</p>
                     </div>
                 </div>
             </div>
@@ -182,13 +250,13 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta">
+    <section class="cta scroll-reveal">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to weave it all together?</h2>
-                <p>Join thousands of freelancers who have simplified their workflow with <span class="loom">Loom</span><span class="lance">Lance</span>.</p>
+                <h2>Ready to debug your business workflow?</h2>
+                <p>Join thousands of developers who've finally found a business tool that doesn't make them want to `git reset --hard` their entire career. 😄</p>
                 <div class="cta-actions">
-                    <button class="btn-primary large">Start Your Free Trial</button>
+                    <a href="signup.html" class="btn-primary large" style="display: inline-block; text-decoration: none;">Start Your Free Trial</a>
                     <p class="cta-note">No credit card required • 14-day free trial</p>
                 </div>
             </div>
@@ -206,8 +274,8 @@
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Product</h4>
-                        <a href="#">Features</a>
-                        <a href="#">Pricing</a>
+                        <a href="index.html#features">Features</a>
+                        <a href="pricing.html">Pricing</a>
                         <a href="#">Integrations</a>
                     </div>
                     <div class="footer-column">
@@ -219,13 +287,13 @@
                     <div class="footer-column">
                         <h4>Support</h4>
                         <a href="#">Help Center</a>
-                        <a href="#">Contact</a>
+                        <a href="contact.html">Contact</a>
                         <a href="#">Status</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 LoomLance. All rights reserved.</p>
+                <p>&copy; 2025 LoomLance. All rights reserved.</p>
             </div>
         </div>
     </footer>
