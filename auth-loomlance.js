@@ -14,9 +14,11 @@
   var SUPABASE_URL = 'https://zbipqfsqxnvrzhpdjvvy.supabase.co'
   var SUPABASE_ANON_KEY =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXBxZnNxeG52cnpocGRqdnZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMjA4OTMsImV4cCI6MjA5NjU5Njg5M30.jcYv8brQ8PrkVP50lALjV-doptljLz2Y8-vtjjhtsF0'
-  // Where to send the user after auth. Local preview for now; switch to the deployed
-  // dashboard URL (e.g. https://app.loomlance.com) before going live.
-  var DASHBOARD_URL = 'http://localhost:4173'
+  // Where to send the user after auth. Hostname-aware so the same static files work both
+  // locally (dashboard preview on :4173) and in production (deployed dashboard subdomain).
+  var host = window.location.hostname
+  var isLocal = host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0'
+  var DASHBOARD_URL = isLocal ? 'http://localhost:4173' : 'https://app.loomlance.com'
 
   if (!window.supabase || !window.supabase.createClient) {
     console.error('[LoomAuth] supabase-js must load before auth-loomlance.js')
