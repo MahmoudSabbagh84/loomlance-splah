@@ -1333,7 +1333,9 @@
             </form>
         </div>
     </div>
-    
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="auth-loomlance.js"></script>
     <script>
         // Security utilities
         const SecurityUtils = {
@@ -1608,17 +1610,14 @@
                 this.setLoadingState(true);
                 
                 try {
-                    // Prepare form data for AWS Cognito
                     const formData = this.getFormData();
-                    
-                    // Simulate API call (replace with actual AWS Cognito integration)
-                    await this.simulateSignup(formData);
-                    
-                    // Success
-                    this.showSuccess();
-                    
+                    const result = await this.signupWithSupabase(formData);
+                    // With an active session, LoomAuth.handoff() has already redirected to the dashboard.
+                    if (result && result.needsConfirmation) {
+                        this.showCheckEmail(formData);
+                    }
                 } catch (error) {
-                    this.showError(error.message || 'An error occurred during signup');
+                    this.showError(window.LoomAuth ? window.LoomAuth.friendly(error) : (error.message || 'An error occurred during signup'));
                 } finally {
                     this.setLoadingState(false);
                 }
@@ -1672,23 +1671,20 @@
                 return formData;
             }
             
-            async simulateSignup(formData) {
-                // Simulate network delay
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Simulate random success/failure for demo
-                if (Math.random() > 0.8) {
-                    throw new Error('Email already exists');
-                }
-                
-                // In real implementation, this would be:
-                // const response = await fetch('/api/signup', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify(formData)
-                // });
-                
-                console.log('Signup data prepared for AWS Cognito:', formData);
+            async signupWithSupabase(formData) {
+                if (!window.LoomAuth) throw new Error('Auth failed to load — please refresh and try again.');
+                const fullName = (formData.given_name + ' ' + formData.family_name).trim();
+                // The handle_new_user() trigger creates the profiles row; display_name comes from metadata.
+                const meta = {
+                    display_name: fullName || formData.username || formData.email,
+                    username: formData.username || undefined,
+                    // Plan intent only — the actual subscription/billing is wired in the pricing task.
+                    selected_plan: formData.selected_plan,
+                    plan_name: formData.plan_name,
+                    marketing_emails: !!formData.marketing_emails,
+                };
+                // Returns { needsConfirmation }. If a session is issued, LoomAuth hands off to the dashboard.
+                return await window.LoomAuth.signUp(formData.email, formData.password, meta);
             }
             
             setLoadingState(isLoading) {
@@ -1712,19 +1708,14 @@
                 alert('Error: ' + message);
             }
             
-            showSuccess() {
+            showCheckEmail(formData) {
                 const selectedPlan = window.planSelector.getSelectedPlan();
-                let message = 'Account created successfully! Please check your email for verification.';
-                
-                if (selectedPlan.id === 'solo') {
-                    message = 'Welcome to LoomLance! Your free Solo account is ready. Check your email for verification.';
-                } else {
-                    message = `Welcome to LoomLance! Your 14-day free trial of ${selectedPlan.name} has started. Check your email for verification.`;
-                }
-                
-                alert(message);
-                // In real implementation, redirect to verification or dashboard
-                // window.location.href = '/verify-email?plan=' + selectedPlan.id;
+                alert(
+                    'Account created! We sent a confirmation link to ' + formData.email +
+                    '. Confirm your email, then sign in.' +
+                    (selectedPlan.id === 'solo' ? '' : ' (Selected plan: ' + selectedPlan.name + ' — set up billing after signing in.)')
+                );
+                window.location.href = 'signin.html';
             }
         }
         

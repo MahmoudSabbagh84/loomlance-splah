@@ -18,7 +18,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://zbipqfsqxnvrzhpdjvvy.supabase.co;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -239,211 +239,90 @@
                 </a>
             </div>
             
-            <div class="signin-emoji">
-                <i data-lucide="rocket"></i>
-            </div>
-            
-            <h1 class="signin-title">Almost Ready!</h1>
-            
-            <p class="signin-subtitle">
-                We're putting the finishing touches on your dashboard and it's going to be absolutely amazing!
-            </p>
-            
-            <div class="signin-message">
-                <strong><i data-lucide="party-popper" style="width: 16px; height: 16px; display: inline-block; margin-right: 5px;"></i>Coming Very Soon!</strong><br>
-                Our team is weaving together the perfect freelance experience just for you.
-            </div>
-            
-            <div class="signin-features">
-                <div class="signin-feature">
-                    <span class="signin-feature-icon">
-                        <i data-lucide="users"></i>
-                    </span>
-                    Client Management
+            <h1 class="signin-title">Welcome back</h1>
+            <p class="signin-subtitle">Sign in to your LoomLance dashboard.</p>
+
+            <div id="authError" role="alert" style="display:none; background:#fdecea; border:1px solid #e74c3c; color:#c0392b; padding:12px 16px; border-radius:12px; margin-bottom:20px; font-size:0.95rem; text-align:left;"></div>
+            <div id="authNotice" style="display:none; background:#e8f5e8; border:1px solid #4CAF50; color:#2e7d32; padding:12px 16px; border-radius:12px; margin-bottom:20px; font-size:0.95rem; text-align:left;"></div>
+
+            <form id="signinForm" novalidate style="text-align:left;">
+                <div style="margin-bottom:16px;">
+                    <label for="email" style="display:block; font-weight:600; color:#2D3E50; margin-bottom:6px;">Email</label>
+                    <input type="email" id="email" class="notify-input" style="width:100%;" placeholder="you@example.com" required autocomplete="email" spellcheck="false" maxlength="254">
                 </div>
-                <div class="signin-feature">
-                    <span class="signin-feature-icon">
-                        <i data-lucide="clipboard"></i>
-                    </span>
-                    Smart Contracts
+                <div style="margin-bottom:8px;">
+                    <label for="password" style="display:block; font-weight:600; color:#2D3E50; margin-bottom:6px;">Password</label>
+                    <input type="password" id="password" class="notify-input" style="width:100%;" placeholder="Your password" required autocomplete="current-password" maxlength="200">
                 </div>
-                <div class="signin-feature">
-                    <span class="signin-feature-icon">
-                        <i data-lucide="dollar-sign"></i>
-                    </span>
-                    Easy Payments
+                <div style="text-align:right; margin-bottom:22px;">
+                    <a href="#" id="forgotLink" style="color:#F39C12; text-decoration:none; font-size:0.9rem; font-weight:500;">Forgot password?</a>
                 </div>
-                <div class="signin-feature">
-                    <span class="signin-feature-icon">
-                        <i data-lucide="bar-chart"></i>
-                    </span>
-                    Beautiful Reports
-                </div>
-            </div>
-            
-            <div class="notify-form">
-                <h4>🔔 Get notified when we launch!</h4>
-                <div class="notify-input-group">
-                    <input 
-                        type="email" 
-                        class="notify-input" 
-                        placeholder="Enter your email address" 
-                        required 
-                        maxlength="254"
-                        autocomplete="email"
-                        spellcheck="false"
-                        id="notifyEmail"
-                    >
-                    <button class="notify-btn" onclick="handleNotifyMe()">Notify Me!</button>
-                </div>
-                <p class="notify-note">We'll send you one email when we're ready. No spam, promise!</p>
-                <div class="security-notice" style="background: #e8f5e8; border: 1px solid #4CAF50; border-radius: 8px; padding: 10px; margin-top: 15px; font-size: 0.85rem; color: #2e7d32;">
-                    <span style="color: #4CAF50; margin-right: 5px;">
-                        <i data-lucide="shield-check" style="width: 14px; height: 14px; display: inline-block;"></i>
-                    </span>
-                    Your email is secure and will only be used for launch notifications.
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-bottom: 20px;">
-                <p style="color: #7F8C8D; font-size: 0.9rem;">
-                    Don't have an account? <a href="signup.html" style="color: #F39C12; text-decoration: none; font-weight: 500;">Sign up here</a>
+                <button type="submit" id="signinBtn" class="back-home" style="width:100%; justify-content:center; border:none; cursor:pointer; font-size:1rem;">
+                    Sign in
+                </button>
+            </form>
+
+            <div style="text-align:center; margin:24px 0 16px;">
+                <p style="color:#7F8C8D; font-size:0.9rem;">
+                    Don't have an account? <a href="signup.html" style="color:#F39C12; text-decoration:none; font-weight:500;">Sign up here</a>
                 </p>
             </div>
-            
-            <a href="index.html" class="back-home">
-                ← Back to Home
-            </a>
+
+            <a href="index.html" style="color:#7F8C8D; text-decoration:none; font-size:0.9rem;">← Back to Home</a>
         </div>
     </div>
     
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="auth-loomlance.js"></script>
     <script>
-        // Security utilities
-        const SecurityUtils = {
-            sanitizeInput: function(input) {
-                return input
-                    .replace(/[<>]/g, '')
-                    .replace(/javascript:/gi, '')
-                    .replace(/on\w+=/gi, '')
-                    .replace(/script/gi, '')
-                    .trim();
-            },
-            
-            isValidEmail: function(email) {
-                const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-                return emailRegex.test(email) && email.length <= 254;
-            },
-            
-            rateLimitKey: 'notifyFormLastSubmit',
-            isRateLimited: function() {
-                const lastSubmit = localStorage.getItem(this.rateLimitKey);
-                if (lastSubmit) {
-                    const timeDiff = Date.now() - parseInt(lastSubmit);
-                    return timeDiff < 30000; // 30 second rate limit
-                }
-                return false;
-            },
-            
-            setRateLimit: function() {
-                localStorage.setItem(this.rateLimitKey, Date.now().toString());
-            }
-        };
-        
-        function handleNotifyMe() {
-            const input = document.getElementById('notifyEmail');
-            const btn = document.querySelector('.notify-btn');
-            
-            // Check rate limiting
-            if (SecurityUtils.isRateLimited()) {
-                btn.textContent = 'Please wait...';
-                btn.style.background = '#f39c12';
-                setTimeout(() => {
-                    btn.textContent = 'Notify Me!';
-                    btn.style.background = '#F39C12';
-                }, 3000);
-                return;
-            }
-            
-            // Sanitize and validate input
-            const sanitizedEmail = SecurityUtils.sanitizeInput(input.value);
-            
-            if (sanitizedEmail && SecurityUtils.isValidEmail(sanitizedEmail)) {
-                // Set rate limit
-                SecurityUtils.setRateLimit();
-                
-                // Create well-formatted email body
-                const emailBody = `
-═══════════════════════════════════════
-LAUNCH NOTIFICATION REQUEST
-═══════════════════════════════════════
+        const form = document.getElementById('signinForm');
+        const btn = document.getElementById('signinBtn');
+        const errBox = document.getElementById('authError');
+        const noticeBox = document.getElementById('authNotice');
+        const emailEl = document.getElementById('email');
+        const pwEl = document.getElementById('password');
 
-DEVELOPER DETAILS:
-   • Email: ${sanitizedEmail}
-   • Requested: ${new Date().toISOString()}
-   • Source: LoomLance Sign-in Page
-
-MESSAGE:
-Please notify me when LoomLance launches! I'm excited to try the developer-first freelance platform.
-
-🔧 TECHNICAL INFO:
-   • User Agent: ${navigator.userAgent.substring(0, 200)}
-   • Referrer: ${document.referrer || 'Direct'}
-
-═══════════════════════════════════════
-This is an automated notification request.
-Add ${sanitizedEmail} to the launch notification list.
-═══════════════════════════════════════
-                `.trim();
-
-                const mailtoLink = `mailto:info@loomlance.com?subject=${encodeURIComponent('[LoomLance] Launch Notification Request')}&body=${encodeURIComponent(emailBody)}`;
-                
-                // Update UI
-                btn.textContent = '✅ Got it!';
-                btn.style.background = '#27ae60';
-                input.disabled = true;
-                
-                // Open mailto
-                window.location.href = mailtoLink;
-                
-                setTimeout(() => {
-                    btn.textContent = 'Thank you!';
-                }, 1000);
-                
-                // Reset after delay
-                setTimeout(() => {
-                    input.disabled = false;
-                    input.value = '';
-                    btn.textContent = 'Notify Me!';
-                    btn.style.background = '#F39C12';
-                }, 5000);
-            } else {
-                // Invalid email
-                input.style.borderColor = '#e74c3c';
-                input.focus();
-                btn.textContent = 'Invalid email';
-                btn.style.background = '#e74c3c';
-                
-                setTimeout(() => {
-                    input.style.borderColor = '#F39C12';
-                    btn.textContent = 'Notify Me!';
-                    btn.style.background = '#F39C12';
-                }, 2000);
-            }
+        function showError(msg) {
+            noticeBox.style.display = 'none';
+            errBox.textContent = msg;
+            errBox.style.display = 'block';
         }
-        
-        // Add some playful interactions
-        document.querySelector('.signin-emoji').addEventListener('click', function() {
-            this.style.transform = 'rotate(360deg) scale(1.2)';
-            this.style.transition = 'transform 0.5s ease';
-            
-            setTimeout(() => {
-                this.style.transform = 'rotate(0deg) scale(1)';
-            }, 500);
+        function showNotice(msg) {
+            errBox.style.display = 'none';
+            noticeBox.textContent = msg;
+            noticeBox.style.display = 'block';
+        }
+        function setLoading(on) {
+            btn.disabled = on;
+            btn.textContent = on ? 'Signing in…' : 'Sign in';
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errBox.style.display = 'none';
+            const email = emailEl.value.trim();
+            const password = pwEl.value;
+            if (!email || !password) { showError('Enter your email and password.'); return; }
+            if (!window.LoomAuth) { showError('Auth failed to load — please refresh.'); return; }
+            setLoading(true);
+            try {
+                await window.LoomAuth.signIn(email, password); // redirects to the dashboard on success
+            } catch (err) {
+                showError(window.LoomAuth.friendly(err));
+                setLoading(false);
+            }
         });
-        // Initialize Lucide icons
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
+
+        document.getElementById('forgotLink').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = emailEl.value.trim();
+            if (!email) { showError('Enter your email above first, then click “Forgot password?”.'); return; }
+            if (!window.LoomAuth) { showError('Auth failed to load — please refresh.'); return; }
+            try {
+                await window.LoomAuth.client.auth.resetPasswordForEmail(email, { redirectTo: window.LoomAuth.dashboardUrl + '/reset-password' });
+                showNotice('If an account exists for ' + email + ', a password-reset link is on its way.');
+            } catch (err) {
+                showError(window.LoomAuth.friendly(err));
             }
         });
     </script>
