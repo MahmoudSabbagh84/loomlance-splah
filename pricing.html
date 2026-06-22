@@ -7,852 +7,261 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-DPWEBECZBQ');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - LoomLance</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
+    <title>Pricing — LoomLance</title>
+    <meta name="description" content="Simple, honest pricing for freelance developers. Start free on Solo, or unlock time tracking, branding, expenses and reports on a paid plan. 14-day free trial.">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <style>
-        .pricing-container {
-            min-height: 100vh;
-            padding: 120px 0 80px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-        
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 80px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 20px;
-        }
-        
-        .pricing-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2D3E50;
-            margin-bottom: 20px;
-        }
-        
-        .pricing-subtitle {
-            font-size: 1.3rem;
-            color: #7F8C8D;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        
-        .pricing-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .toggle-label {
-            font-weight: 600;
-            color: #2D3E50;
-        }
-        
-        .toggle-switch {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: #BDC3C7;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .toggle-switch.active {
-            background: #F39C12;
-        }
-        
-        .toggle-slider {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .toggle-switch.active .toggle-slider {
-            transform: translateX(30px);
-        }
-        
-        .savings-badge {
-            background: #27ae60;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .pricing-card {
-            background: white;
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
-        }
-        
-        .pricing-card.featured {
-            border-color: #F39C12;
-            transform: scale(1.05);
-        }
-        
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-8px);
-        }
-        
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #F39C12, #E67E22);
-        }
-        
-        .pricing-card.featured::before {
-            height: 8px;
-            background: linear-gradient(90deg, #F39C12, #E67E22, #F39C12);
-        }
-        
-        .popular-badge {
-            position: absolute;
-            top: 20px;
-            right: -10px;
-            background: #F39C12;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transform: rotate(10deg);
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
-        }
-        
-        .tier-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-            text-align: center;
-        }
-        
-        .tier-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2D3E50;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        
-        .tier-tagline {
-            font-size: 1rem;
-            color: #7F8C8D;
-            text-align: center;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-        
-        .tier-price {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .price-amount {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2D3E50;
-        }
-        
-        .price-period {
-            font-size: 1rem;
-            color: #7F8C8D;
-            margin-left: 5px;
-        }
-        
-        .price-annual {
-            display: none;
-            font-size: 0.9rem;
-            color: #27ae60;
-            margin-top: 5px;
-        }
-        
-        .tier-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 40px;
-        }
-        
-        .tier-features li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        
-        .feature-icon {
-            color: #27ae60;
-            font-weight: bold;
-            min-width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .feature-icon i {
-            width: 16px;
-            height: 16px;
-        }
-        
-        .feature-icon.unavailable {
-            color: #e74c3c;
-        }
-        
-        .feature-text {
-            color: #2D3E50;
-            flex: 1;
-            line-height: 1.4;
-            display: flex;
-            align-items: center;
-            min-height: 20px;
-        }
-        
-        .feature-text.unavailable {
-            color: #7F8C8D;
-            text-decoration: line-through;
-        }
-        
-        .tier-cta {
-            width: 100%;
-            padding: 18px 30px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            box-sizing: border-box;
-        }
-        
-        .tier-cta.primary {
-            background: #F39C12;
-            color: white;
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
-        }
-        
-        .tier-cta.primary:hover {
-            background: #E67E22;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
-        }
-        
-        .tier-cta.secondary {
-            background: transparent;
-            color: #2D3E50;
-            border: 2px solid #BDC3C7;
-        }
-        
-        .tier-cta.secondary:hover {
-            border-color: #F39C12;
-            color: #F39C12;
-            transform: translateY(-2px);
-        }
-        
-        .tier-cta.disabled {
-            background: #BDC3C7;
-            color: #7F8C8D;
-            border: 2px solid #BDC3C7;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-        
-        .tier-cta.disabled:hover {
-            background: #BDC3C7;
-            color: #7F8C8D;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .coming-soon-badge {
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            background: #E74C3C;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
-        }
-        
-        .pricing-card.coming-soon {
-            opacity: 0.7;
-            position: relative;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border: 2px solid #BDC3C7;
-        }
-        
-        .pricing-card.coming-soon .tier-name,
-        .pricing-card.coming-soon .tier-tagline,
-        .pricing-card.coming-soon .tier-price,
-        .pricing-card.coming-soon .tier-features {
-            opacity: 0.6;
-        }
-        
-        .pricing-card.coming-soon .tier-icon {
-            opacity: 0.5;
-        }
-        
-        .pricing-card.coming-soon .tier-icon i {
-            color: #7F8C8D;
-        }
-        
-        .pricing-faq {
-            max-width: 800px;
-            margin: 80px auto 0;
-            padding: 0 20px;
-        }
-        
-        .faq-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2D3E50;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .faq-item {
-            background: white;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .faq-question {
-            padding: 25px 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #2D3E50;
-            transition: all 0.3s ease;
-        }
-        
-        .faq-question:hover {
-            background: #f8f9fa;
-        }
-        
-        .faq-icon {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-answer {
-            padding: 0 30px 25px;
-            color: #7F8C8D;
-            line-height: 1.6;
-            display: none;
-        }
-        
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-        
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-        
-        @media (max-width: 768px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .pricing-card.featured {
-                transform: none;
-            }
-            
-            .pricing-card.featured:hover {
-                transform: translateY(-8px);
-            }
-            
-            .pricing-title {
-                font-size: 2.5rem;
-            }
-            
-            .pricing-toggle {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="bg-bg text-fg">
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="LoomLance" class="logo-img">
-                    <span class="logo-text"><span class="loom">Loom</span><span class="lance">Lance</span></span>
-                </a>
-            </div>
-            <div class="nav-menu">
-                <a href="index.html#features" class="nav-link">Features</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
-                <a href="index.html#about" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="signin.html" class="nav-link sign-in">Sign In</a>
-                <a href="signup.html" class="nav-cta">Get Started</a>
-            </div>
+    <header class="sticky top-0 z-50 border-b border-border bg-bg-elevated/80 backdrop-blur">
+      <nav class="section flex h-16 items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="logo.png" alt="LoomLance" class="size-8">
+          <span class="text-lg font-bold tracking-tight"><span class="text-fg">Loom</span><span class="text-primary">Lance</span></span>
+        </a>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <a href="index.html#features" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Features</a>
+          <a href="pricing.html" class="hidden rounded-md px-3 py-2 text-sm font-medium text-primary sm:block">Pricing</a>
+          <a href="index.html#about" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">About</a>
+          <a href="contact.html" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Contact</a>
+          <a href="signin.html" class="rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg">Sign in</a>
+          <a href="signup.html" class="btn-primary">Get started</a>
         </div>
-    </nav>
+      </nav>
+    </header>
 
-    <div class="pricing-container">
-        <div class="pricing-header">
-            <h1 class="pricing-title">Simple Pricing for Developers</h1>
-            <p class="pricing-subtitle">
-                No hidden fees, no confusing tiers. Just honest pricing that scales with your dev career. 
-                <br>From your first side project to full-time freelancing. <em>Studio tier coming soon!</em>
-            </p>
-            
-            <div class="pricing-toggle">
-                <span class="toggle-label">Monthly</span>
-                <div class="toggle-switch" id="billingToggle">
-                    <div class="toggle-slider"></div>
-                </div>
-                <span class="toggle-label">Annual</span>
-                <span class="savings-badge">Save 17%</span>
-            </div>
+    <!-- Page header (light) -->
+    <section class="bg-bg pt-16 pb-10 lg:pt-20">
+      <div class="section text-center">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-bg-muted px-3 py-1 text-xs font-medium text-fg-muted">
+          <span class="size-1.5 rounded-full bg-primary"></span> Pricing
+        </span>
+        <h1 class="mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl">Simple pricing for developers</h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-fg-muted">
+          No hidden fees, no confusing tiers — just honest pricing that scales with your dev career. Start free, upgrade when you grow.
+        </p>
+
+        <!-- Billing toggle -->
+        <div class="mt-8 inline-flex items-center gap-3">
+          <div class="inline-flex rounded-lg border border-border bg-bg-elevated p-1 text-sm font-medium">
+            <button type="button" id="monthlyBtn" class="rounded-md bg-primary px-4 py-1.5 text-primary-fg transition-colors">Monthly</button>
+            <button type="button" id="annualBtn" class="rounded-md px-4 py-1.5 text-fg-muted transition-colors hover:text-fg">Annual</button>
+          </div>
+          <span class="rounded-full bg-success/10 px-2.5 py-1 text-xs font-semibold text-success">2 months free</span>
         </div>
+      </div>
+    </section>
 
-        <div class="pricing-grid scroll-reveal">
-            <!-- Solo Tier -->
-            <div class="pricing-card">
-                <div class="tier-icon">
-                    <i data-lucide="rocket"></i>
-                </div>
-                <h2 class="tier-name">Solo</h2>
-                <p class="tier-tagline">"Perfect for your first client"</p>
-                
-                <div class="tier-price">
-                    <span class="price-amount">$0</span>
-                    <span class="price-period">/ month</span>
-                    <div class="price-annual">Always free!</div>
-                </div>
-                
-                <ul class="tier-features">
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>1 Active Project</strong> (perfect for focus)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text">Unlimited Clients (build your roster)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text">Professional Proposals & Contracts</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text">Invoicing & Payment Processing</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text">Client Management (CRM)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="x"></i>
-                        </span>
-                        <span class="feature-text unavailable">Time Tracking (Freelancer+)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="x"></i>
-                        </span>
-                        <span class="feature-text unavailable">Custom Invoice Branding (Freelancer+)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="x"></i>
-                        </span>
-                        <span class="feature-text unavailable">Recurring Invoices (Freelancer+)</span>
-                    </li>
-                </ul>
-                
-                <a href="signup.html?plan=solo" class="tier-cta secondary">Start Free Forever</a>
-            </div>
+    <!-- Pricing grid (light) -->
+    <section class="bg-bg pb-20 lg:pb-24">
+      <div class="section grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
 
-            <!-- Freelancer Tier -->
-            <div class="pricing-card featured">
-                <div class="popular-badge">Most Popular</div>
-                <div class="tier-icon">
-                    <i data-lucide="laptop"></i>
-                </div>
-                <h2 class="tier-name">Freelancer</h2>
-                <p class="tier-tagline">"For the full-time code warrior"</p>
-                
-                <div class="tier-price">
-                    <span class="price-amount monthly-price">$19</span>
-                    <span class="price-amount annual-price" style="display: none;">$16</span>
-                    <span class="price-period">/ month</span>
-                    <div class="price-annual">Billed annually ($190/year)</div>
-                </div>
-                
-                <ul class="tier-features">
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>5 Active Projects</strong></span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text">Everything in Solo, plus:</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>Custom Invoice Branding</strong> (logo, accent, footer)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>Recurring Invoices</strong> (auto-send on a schedule)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>Time Tracking</strong> (timer + invoice from tracked time)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="clock"></i>
-                        </span>
-                        <span class="feature-text">GitHub/GitLab Integration <em>(coming soon)</em></span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="clock"></i>
-                        </span>
-                        <span class="feature-text">Scope Creep Module <em>(coming soon)</em></span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="clock"></i>
-                        </span>
-                        <span class="feature-text">Secure Credential Vault <em>(coming soon)</em></span>
-                    </li>
-                </ul>
-                
-                <a href="signup.html?plan=freelancer" class="tier-cta primary">Start Free Trial</a>
-            </div>
-
-            <!-- Studio Tier -->
-            <div class="pricing-card">
-                <div class="tier-icon">
-                    <i data-lucide="building"></i>
-                </div>
-                <h2 class="tier-name">Studio</h2>
-                <p class="tier-tagline">"Scale up with style"</p>
-                
-                <div class="tier-price">
-                    <span class="price-amount monthly-price">$49</span>
-                    <span class="price-amount annual-price" style="display: none;">$41</span>
-                    <span class="price-period">/ month</span>
-                    <div class="price-annual">Billed annually ($490/year)</div>
-                </div>
-                
-                <ul class="tier-features">
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text">Everything in Freelancer, plus:</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>Unlimited Active Projects</strong></span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>Expenses</strong> (log by category/project + receipts)</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text"><strong>Reports</strong> — revenue, P&amp;L, aging &amp; time</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="check"></i>
-                        </span>
-                        <span class="feature-text">CSV export</span>
-                    </li>
-                    <li>
-                        <span class="feature-icon">
-                            <i data-lucide="clock"></i>
-                        </span>
-                        <span class="feature-text">Income Forecasting <em>(coming soon)</em></span>
-                    </li>
-                </ul>
-
-                <a href="signup.html?plan=studio" class="tier-cta secondary">Start Free Trial</a>
-            </div>
-
-            <!-- Agency Tier (coming soon) -->
-            <div class="pricing-card coming-soon">
-                <div class="coming-soon-badge">Coming Soon</div>
-                <div class="tier-icon">
-                    <i data-lucide="users"></i>
-                </div>
-                <h2 class="tier-name">Agency</h2>
-                <p class="tier-tagline">"For teams &amp; studios"</p>
-
-                <div class="tier-price">
-                    <span class="price-amount">—</span>
-                    <div class="price-annual">Pricing TBA</div>
-                </div>
-
-                <ul class="tier-features">
-                    <li><span class="feature-icon"><i data-lucide="check"></i></span><span class="feature-text">Everything in Studio, plus:</span></li>
-                    <li><span class="feature-icon"><i data-lucide="clock"></i></span><span class="feature-text"><strong>Team Members</strong> (multiple seats) <em>(coming soon)</em></span></li>
-                    <li><span class="feature-icon"><i data-lucide="clock"></i></span><span class="feature-text"><strong>White-label Client Portal</strong> <em>(coming soon)</em></span></li>
-                    <li><span class="feature-icon"><i data-lucide="clock"></i></span><span class="feature-text">Subcontractor Management <em>(coming soon)</em></span></li>
-                    <li><span class="feature-icon"><i data-lucide="clock"></i></span><span class="feature-text">Advanced Permission Controls <em>(coming soon)</em></span></li>
-                </ul>
-
-                <a href="#" class="tier-cta disabled" onclick="return false;">Coming Soon</a>
-            </div>
+        <!-- Solo -->
+        <div class="card flex flex-col">
+          <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="rocket"></i></div>
+          <h2 class="mt-4 text-lg font-bold">Solo</h2>
+          <p class="mt-1 text-sm text-fg-muted">Perfect for your first client.</p>
+          <div class="mt-5">
+            <span class="text-4xl font-extrabold tracking-tight">$0</span>
+            <span class="text-sm text-fg-muted">/ month</span>
+            <p class="mt-1 text-xs text-success">Free forever</p>
+          </div>
+          <ul class="mt-6 flex-1 space-y-2.5 text-sm">
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>1 active project</strong></span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>Unlimited clients (CRM)</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>Contracts &amp; proposals (PDF)</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>Invoicing + public pay page</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>Card, PayPal &amp; cash payments</span></li>
+            <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="minus" class="mt-0.5 size-4 shrink-0"></i><span>Time tracking</span></li>
+            <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="minus" class="mt-0.5 size-4 shrink-0"></i><span>Custom branding</span></li>
+            <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="minus" class="mt-0.5 size-4 shrink-0"></i><span>Recurring invoices</span></li>
+          </ul>
+          <a href="signup.html?plan=solo" class="btn-secondary mt-6 w-full">Start free forever</a>
         </div>
 
-        <!-- FAQ Section -->
-        <div class="pricing-faq scroll-reveal">
-            <h2 class="faq-title">Frequently Asked Questions</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Can I really use Solo tier forever for free?</span>
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Absolutely! We believe every developer should have access to professional tools. The Solo tier is genuinely useful, not a frustrating demo. Perfect for students, side projects, or your first client. No credit card required, ever.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What happens if I exceed my project limit?</span>
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    On Solo, you can have unlimited clients but only 1 active project. When you're ready for project #2, you'll need to upgrade to Freelancer. We'll give you plenty of warning and make the transition smooth.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>How does the GitHub/GitLab integration work?</span>
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Link your repositories to projects and automatically track commits, pull requests, and deployment status. Show clients real progress with visual timelines. Perfect for demonstrating value and justifying your rates.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What's the "Scope Creep" module?</span>
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Every developer's nightmare solved! When clients request changes outside the original scope, create professional change requests with time/cost estimates. Get approval before you code, then bill automatically. No more free work!
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Can I cancel anytime?</span>
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Yes! No contracts, no cancellation fees. You can downgrade to Solo anytime or cancel completely. We're confident you'll love LoomLance, but we won't trap you if it's not the right fit.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>When will the Studio tier be available?</span>
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    We're actively developing the Studio tier with advanced team features, analytics, and white-labeling capabilities. We expect to launch it in Q2 2025. Sign up for our newsletter to be the first to know when it's ready!
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Do you offer discounts for students or non-profits?</span>
-                    <span class="faq-icon">▼</span>
-                </div>
-                <div class="faq-answer">
-                    We're working on special programs! For now, the Solo tier is perfect for students. For established non-profits doing amazing work, reach out to us - we love supporting good causes.
-                </div>
-            </div>
+        <!-- Freelancer (featured) -->
+        <div class="card relative flex flex-col ring-2 ring-primary">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-fg">Most popular</span>
+          <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="laptop"></i></div>
+          <h2 class="mt-4 text-lg font-bold">Freelancer</h2>
+          <p class="mt-1 text-sm text-fg-muted">For the full-time code warrior.</p>
+          <div class="mt-5">
+            <span class="text-4xl font-extrabold tracking-tight"><span class="monthly-price">$19</span><span class="annual-price hidden">$16</span></span>
+            <span class="text-sm text-fg-muted">/ month</span>
+            <p class="price-annual mt-1 hidden text-xs text-fg-muted">Billed annually ($190/year)</p>
+            <p class="price-monthly mt-1 text-xs text-fg-muted">14-day free trial · cancel anytime</p>
+          </div>
+          <ul class="mt-6 flex-1 space-y-2.5 text-sm">
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>5 active projects</strong></span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>Everything in Solo, plus:</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>Custom invoice branding</strong></span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>Recurring invoices</strong></span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>Time tracking</strong> + invoice from time</span></li>
+            <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>GitHub/GitLab integration <em>(soon)</em></span></li>
+            <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Scope-creep module <em>(soon)</em></span></li>
+            <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Credential vault <em>(soon)</em></span></li>
+          </ul>
+          <a href="signup.html?plan=freelancer" class="btn-primary mt-6 w-full">Start free trial</a>
         </div>
-    </div>
+
+        <!-- Studio -->
+        <div class="card flex flex-col">
+          <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="building-2"></i></div>
+          <h2 class="mt-4 text-lg font-bold">Studio</h2>
+          <p class="mt-1 text-sm text-fg-muted">Scale up with everything on.</p>
+          <div class="mt-5">
+            <span class="text-4xl font-extrabold tracking-tight"><span class="monthly-price">$49</span><span class="annual-price hidden">$41</span></span>
+            <span class="text-sm text-fg-muted">/ month</span>
+            <p class="price-annual mt-1 hidden text-xs text-fg-muted">Billed annually ($490/year)</p>
+            <p class="price-monthly mt-1 text-xs text-fg-muted">14-day free trial · cancel anytime</p>
+          </div>
+          <ul class="mt-6 flex-1 space-y-2.5 text-sm">
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>Everything in Freelancer, plus:</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>Unlimited active projects</strong></span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>Expenses</strong> + receipts</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span><strong>Reports</strong> — revenue, P&amp;L, aging &amp; time</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>CSV export</span></li>
+            <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Income forecasting <em>(soon)</em></span></li>
+          </ul>
+          <a href="signup.html?plan=studio" class="btn-secondary mt-6 w-full">Start free trial</a>
+        </div>
+
+        <!-- Agency (coming soon) -->
+        <div class="card relative flex flex-col border-dashed bg-bg-muted">
+          <span class="absolute right-4 top-4 rounded-full bg-fg/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-fg-muted">Coming soon</span>
+          <div class="grid size-11 place-items-center rounded-lg bg-fg/5 text-fg-subtle"><i data-lucide="users"></i></div>
+          <h2 class="mt-4 text-lg font-bold text-fg-muted">Agency</h2>
+          <p class="mt-1 text-sm text-fg-subtle">For teams &amp; studios.</p>
+          <div class="mt-5">
+            <span class="text-4xl font-extrabold tracking-tight text-fg-muted">—</span>
+            <p class="mt-1 text-xs text-fg-subtle">Pricing TBA</p>
+          </div>
+          <ul class="mt-6 flex-1 space-y-2.5 text-sm text-fg-subtle">
+            <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0"></i><span>Everything in Studio, plus:</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Team members (multiple seats)</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>White-label client portal</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Subcontractor management</span></li>
+            <li class="flex items-start gap-2.5"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Advanced permissions</span></li>
+          </ul>
+          <button type="button" disabled class="btn mt-6 w-full cursor-not-allowed border border-border bg-bg-muted text-fg-subtle">Coming soon</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (light muted) -->
+    <section class="bg-bg-muted py-20 lg:py-24">
+      <div class="section max-w-3xl">
+        <h2 class="text-center text-3xl font-bold tracking-tight sm:text-4xl">Frequently asked questions</h2>
+        <div class="mt-10 space-y-3">
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Can I really use Solo for free forever?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">Yes. Solo is genuinely useful, not a frustrating demo — perfect for students, side projects, or your first client. No credit card required, ever.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">What happens if I hit my project limit?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">Solo allows unlimited clients but 1 active project; Freelancer raises that to 5, and Studio is unlimited. When you're ready for the next project, upgrading takes seconds and your data carries over.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Is there a free trial on the paid plans?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">Yes — Freelancer and Studio both come with a 14-day free trial. A card is required to start the trial, and you can cancel anytime before it ends to avoid being charged.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">How do my clients pay me?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">Every plan includes a public invoice page where clients can pay by card (Stripe) or PayPal — or you can simply share cash/bank-transfer instructions. Payments flow directly to you.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Can I cancel anytime?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">Absolutely. No contracts and no cancellation fees — downgrade to Solo or cancel completely from your billing settings whenever you like.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">What's coming next?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">We're actively building GitHub/GitLab integration, a scope-creep / change-request module, a secure credential vault, income forecasting, and the Agency tier for teams. Items marked "soon" on the plans above are on the way.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA band (dark) -->
+    <section class="bg-[#0B0E14] text-white">
+      <div class="section py-16 text-center">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Ready to weave it all together?</h2>
+        <p class="mx-auto mt-3 max-w-xl text-white/70">Start free on Solo, or take a paid plan for a 14-day spin. No lock-in — cancel anytime.</p>
+        <div class="mt-7 flex flex-col items-center gap-2">
+          <a href="signup.html" class="btn-primary px-6 py-3 text-base">Start your free trial</a>
+          <p class="text-xs text-white/50">14-day trial on paid plans · Solo is free forever</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (dark) -->
+    <footer class="bg-[#070A0F] text-white/70">
+      <div class="section grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <div class="text-lg font-bold tracking-tight text-white">Loom<span class="text-accent">Lance</span></div>
+          <p class="mt-2 text-sm text-white/50">Weave it all together.</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Product</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="index.html#features" class="hover:text-white">Features</a></li>
+            <li><a href="pricing.html" class="hover:text-white">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Company</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="index.html#about" class="hover:text-white">About</a></li>
+            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Get started</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="signup.html" class="hover:text-white">Create account</a></li>
+            <li><a href="signin.html" class="hover:text-white">Sign in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div class="section py-5 text-center text-xs text-white/40">© 2026 LoomLance. All rights reserved.</div>
+      </div>
+    </footer>
 
     <script>
-        // Initialize Lucide icons
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-            
-            // Scroll-triggered animations
-            function handleScrollAnimations() {
-                const elements = document.querySelectorAll('.scroll-reveal');
-                const windowHeight = window.innerHeight;
-                
-                elements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < windowHeight - elementVisible) {
-                        element.classList.add('revealed');
-                    }
-                });
-            }
-            
-            // Initial check
-            handleScrollAnimations();
-            
-            // Listen for scroll events
-            window.addEventListener('scroll', handleScrollAnimations);
-        });
-        
-        // Billing toggle functionality
-        const billingToggle = document.getElementById('billingToggle');
-        const monthlyPrices = document.querySelectorAll('.monthly-price');
-        const annualPrices = document.querySelectorAll('.annual-price');
-        const annualNotes = document.querySelectorAll('.price-annual');
-        
-        billingToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            const isAnnual = this.classList.contains('active');
-            
-            monthlyPrices.forEach(price => {
-                price.style.display = isAnnual ? 'none' : 'inline';
-            });
-            
-            annualPrices.forEach(price => {
-                price.style.display = isAnnual ? 'inline' : 'none';
-            });
-            
-            annualNotes.forEach(note => {
-                note.style.display = isAnnual ? 'block' : 'none';
-            });
-        });
-        
-        // FAQ toggle functionality
-        function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            // Close all FAQ items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Open clicked item if it wasn't active
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
-        }
-        
-        // Add some playful interactions
-        document.querySelectorAll('.tier-icon').forEach(icon => {
-            icon.addEventListener('click', function() {
-                this.style.transform = 'rotate(360deg) scale(1.2)';
-                this.style.transition = 'transform 0.5s ease';
-                
-                setTimeout(() => {
-                    this.style.transform = 'rotate(0deg) scale(1)';
-                }, 500);
-            });
-        });
+      // Billing toggle: swap monthly/annual prices
+      const monthlyBtn = document.getElementById('monthlyBtn')
+      const annualBtn = document.getElementById('annualBtn')
+
+      function setBilling(annual) {
+        document.querySelectorAll('.monthly-price').forEach(el => el.classList.toggle('hidden', annual))
+        document.querySelectorAll('.annual-price').forEach(el => el.classList.toggle('hidden', !annual))
+        document.querySelectorAll('.price-annual').forEach(el => el.classList.toggle('hidden', !annual))
+        document.querySelectorAll('.price-monthly').forEach(el => el.classList.toggle('hidden', annual))
+
+        annualBtn.classList.toggle('bg-primary', annual)
+        annualBtn.classList.toggle('text-primary-fg', annual)
+        annualBtn.classList.toggle('text-fg-muted', !annual)
+        monthlyBtn.classList.toggle('bg-primary', !annual)
+        monthlyBtn.classList.toggle('text-primary-fg', !annual)
+        monthlyBtn.classList.toggle('text-fg-muted', annual)
+      }
+
+      monthlyBtn.addEventListener('click', () => setBilling(false))
+      annualBtn.addEventListener('click', () => setBilling(true))
+
+      window.addEventListener('load', function () {
+        if (typeof lucide !== 'undefined') lucide.createIcons()
+      })
     </script>
 </body>
 </html>
