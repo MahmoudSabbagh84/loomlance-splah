@@ -1031,32 +1031,31 @@
                             </div>
                             <div class="plan-info">
                                 <h4>Freelancer</h4>
-                                <p class="plan-price">$29/month</p>
+                                <p class="plan-price">$19/month</p>
                                 <p class="plan-trial">14-day free trial</p>
                             </div>
                         </div>
                         <div class="plan-features">
-                            <span><i data-lucide="check" class="feature-check"></i> Unlimited Projects</span>
-                            <span><i data-lucide="check" class="feature-check"></i> GitHub Integration</span>
+                            <span><i data-lucide="check" class="feature-check"></i> 5 Active Projects</span>
+                            <span><i data-lucide="check" class="feature-check"></i> Branding · Recurring · Time tracking</span>
                         </div>
                     </div>
                     
-                    <div class="plan-option coming-soon" data-plan="studio">
-                        <div class="coming-soon-badge">Coming Soon</div>
+                    <div class="plan-option" data-plan="studio">
                         <div class="plan-header">
                             <div class="plan-icon">
                                 <i data-lucide="building"></i>
                             </div>
                             <div class="plan-info">
                                 <h4>Studio</h4>
-                                <p class="plan-price">$59/month</p>
-                                <p class="plan-trial">Coming Soon</p>
+                                <p class="plan-price">$49/month</p>
+                                <p class="plan-trial">14-day free trial</p>
                             </div>
                         </div>
                         <div class="plan-features">
-                            <span><i data-lucide="check" class="feature-check"></i> Team Members</span>
-                            <span><i data-lucide="check" class="feature-check"></i> Advanced Analytics</span>
-                            <span><i data-lucide="check" class="feature-check"></i> Priority Support</span>
+                            <span><i data-lucide="check" class="feature-check"></i> Unlimited Projects</span>
+                            <span><i data-lucide="check" class="feature-check"></i> Expenses &amp; Receipts</span>
+                            <span><i data-lucide="check" class="feature-check"></i> Reports &amp; CSV export</span>
                         </div>
                     </div>
                 </div>
@@ -1295,7 +1294,7 @@
                         </div>
                         <div class="summary-row">
                             <span>After Trial:</span>
-                            <span id="selectedPlanPrice">$29/month</span>
+                            <span id="selectedPlanPrice">$19/month</span>
                         </div>
                         <div class="summary-row total">
                             <span>Today's Charge:</span>
@@ -1735,8 +1734,8 @@
                 this.selectedPlan = 'freelancer'; // Default to freelancer
                 this.planData = {
                     solo: { name: 'Solo', price: 'Free Forever', monthly: 0 },
-                    freelancer: { name: 'Freelancer', price: '$29/month', monthly: 29 },
-                    studio: { name: 'Studio', price: '$59/month', monthly: 59 }
+                    freelancer: { name: 'Freelancer', price: '$19/month', monthly: 19 },
+                    studio: { name: 'Studio', price: '$49/month', monthly: 49 }
                 };
                 this.init();
             }
