@@ -1,8 +1,18 @@
 # Splash + Auth QA — findings log
 
 > **Scope:** the splash site (`loomlance.com`) and the **signup → confirm → login → dashboard** workflow (shared Supabase; hands off to `app.loomlance.com`).
-> **Mode:** 🎥 **CAPTURE** — findings are logged as they're observed; **fixes are held until the user says "QA done,"** then triaged.
+> **Mode:** ✅ **TRIAGED** (QA done 2026-06-22) — see Triage below for grouping + sequencing.
 > **Started:** 2026-06-22.
+
+## Triage & proposed sequencing (2026-06-22)
+Findings split into coherent tracks. Each big item still gets its own **brainstorm → spec → build** (HARD GATE: approval before building).
+
+- **Track A — Splash & auth UX overhaul** (cohesive; do as one design-led effort): **F1** (redesign + codified design system) → then rebuild pages on it: **F2** (one unified sign-in + Remember me), **F3** (trim signup fields + autofill), **F5** (logout → unified page). Decide F2's canonical page first (it shapes F5 + the sign-in build). Starts with a **UI/UX brainstorm**.
+- **Track B — Revenue** (business-critical, independent of design): **F6** (Stripe **subscription** billing → `subscription_tier`) — paired with the **pricing + advertised-features finalization**. Note: separate from the already-built Stripe **Connect**.
+- **Track C — Branded auth email**: **F4** — quick once USER provisions **SES SMTP creds**; I draft + wire branded templates.
+- **Track D — Trust & scale** (later): **F8** (anti-fraud signup) → **F7 / N1** (admin / internal staff console; F7 folds into N1).
+
+**Suggested order:** A or B first (highest impact — design overhaul vs. revenue), C slotted in whenever SES SMTP is ready, D after. Quick partial wins available immediately if wanted: F3 autofill fix + F5 (once F2 canonical decided).
 
 ## Environment
 - **Live:** splash `https://loomlance.com` → dashboard `https://app.loomlance.com` (both on Amplify). Primary QA target.
