@@ -85,7 +85,13 @@
                 Thank you for contacting us. We'll get back to you within 24 hours.
               </div>
 
+              <div id="formError" role="alert" class="mt-4 hidden rounded-lg border border-danger/30 bg-danger/10 p-3 text-sm text-danger"></div>
+
               <form id="contactForm" novalidate class="mt-5 space-y-4">
+                <!-- Honeypot: hidden from users, tempting to bots. Real users leave it empty. -->
+                <div class="sr-only" aria-hidden="true">
+                  <label>Company<input type="text" id="company" name="company" tabindex="-1" autocomplete="off"></label>
+                </div>
                 <div>
                   <label for="name" class="field-label">Full name <span class="text-danger">*</span></label>
                   <input type="text" id="name" name="name" class="field-input" required maxlength="100" autocomplete="name" spellcheck="false">
@@ -297,52 +303,58 @@
                 }
             }
 
-            function submitForm() {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Sending...';
+            // Public Supabase Edge Function that actually delivers the message via SES.
+            // Anon key is public by design (same one the splash auth uses).
+            const CONTACT_ENDPOINT = 'https://zbipqfsqxnvrzhpdjvvy.supabase.co/functions/v1/contact-form';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiaXBxZnNxeG52cnpocGRqdnZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMjA4OTMsImV4cCI6MjA5NjU5Njg5M30.jcYv8brQ8PrkVP50lALjV-doptljLz2Y8-vtjjhtsF0';
 
-                const formData = {
+            function showFormError(msg) {
+                const box = document.getElementById('formError');
+                box.textContent = msg;
+                box.classList.remove('hidden');
+                box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            async function submitForm() {
+                document.getElementById('formError').classList.add('hidden');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending…';
+
+                const payload = {
                     name: SecurityUtils.sanitizeInput(document.getElementById('name').value),
                     email: SecurityUtils.sanitizeInput(document.getElementById('email').value),
                     subject: SecurityUtils.sanitizeInput(document.getElementById('subject').value),
                     message: SecurityUtils.sanitizeInput(document.getElementById('message').value),
-                    timestamp: new Date().toISOString(),
-                    userAgent: navigator.userAgent.substring(0, 200)
+                    company: document.getElementById('company').value, // honeypot
                 };
 
-                const emailBody = `NEW CONTACT FORM SUBMISSION
+                try {
+                    const res = await fetch(CONTACT_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                        },
+                        body: JSON.stringify(payload),
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
 
-Name: ${formData.name}
-Email: ${formData.email}
-Subject: ${formData.subject}
-
-Message:
-${formData.message}
-
----
-Timestamp: ${formData.timestamp}
-Source: LoomLance contact form
-Please respond directly to: ${formData.email}`;
-
-                const mailtoLink = `mailto:info@loomlance.com?subject=${encodeURIComponent(`[LoomLance Contact] ${formData.subject}`)}&body=${encodeURIComponent(emailBody)}`;
-
-                setTimeout(() => {
                     SecurityUtils.setRateLimit();
-                    document.getElementById('successMessage').classList.remove('hidden');
+                    form.reset();
                     form.style.display = 'none';
-                    window.location.href = mailtoLink;
-
-                    setTimeout(() => {
-                        form.reset();
-                        form.style.display = 'block';
-                        document.getElementById('successMessage').classList.add('hidden');
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Send message';
-                        messageCount.textContent = '0 / 2000 characters';
-                        messageCount.classList.remove('text-warning', 'text-danger');
-                        messageCount.classList.add('text-fg-subtle');
-                    }, 5000);
-                }, 1000);
+                    messageCount.textContent = '0 / 2000 characters';
+                    messageCount.classList.remove('text-warning', 'text-danger');
+                    messageCount.classList.add('text-fg-subtle');
+                    document.getElementById('successMessage').classList.remove('hidden');
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } catch (err) {
+                    showFormError((err && err.message) || 'Could not send your message. Please email info@loomlance.com directly.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send message';
+                }
             }
         });
     </script>
