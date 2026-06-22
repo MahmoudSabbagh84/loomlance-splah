@@ -1,0 +1,50 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-bg text-fg antialiased;
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-bg;
+  }
+}
+
+/* Reusable component classes for the marketing pages (mirror the dashboard's look).
+   Use these for consistency; one-off layout still uses utilities. */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-primary-fg hover:bg-primary-hover;
+  }
+  .btn-secondary {
+    @apply btn border border-border bg-bg-elevated text-fg hover:bg-bg-muted;
+  }
+  .btn-ghost {
+    @apply btn text-fg-muted hover:bg-bg-muted hover:text-fg;
+  }
+  .card {
+    @apply rounded-xl border border-border bg-bg-elevated p-6;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-fg;
+  }
+  .field-input {
+    @apply w-full rounded-lg border border-border bg-bg-elevated px-3 py-2.5 text-sm text-fg placeholder:text-fg-subtle focus:border-primary;
+  }
+  .section {
+    @apply mx-auto max-w-6xl px-5 sm:px-8;
+  }
+}

@@ -1,0 +1,41 @@
+/* Mirrors loomlance-dashboard/src/styles/tokens.css — keep these in sync so the splash and
+   the app share one palette ("Slate Pro": violet primary + neutral grays). */
+:root {
+  --color-bg: #FBFBFD;
+  --color-bg-elevated: #FFFFFF;
+  --color-bg-muted: #F1F3F7;
+  --color-fg: #14181F;
+  --color-fg-muted: #5A6472;
+  --color-fg-subtle: #8A95A5;
+  --color-border: #E4E7EC;
+  --color-border-strong: #CBD2DC;
+  --color-primary: #6D45F0;
+  --color-primary-fg: #FFFFFF;
+  --color-primary-hover: #5B37D6;
+  --color-accent: #7C5CFF;
+  --color-accent-fg: #FFFFFF;
+  --color-success: #15A66E;
+  --color-warning: #C77A12;
+  --color-danger: #DC4040;
+  --color-info: #2D74D6;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #0B0E14;
+  --color-bg-elevated: #151B26;
+  --color-bg-muted: #1E2532;
+  --color-fg: #E6EDF3;
+  --color-fg-muted: #94A3B8;
+  --color-fg-subtle: #64748B;
+  --color-border: #222B38;
+  --color-border-strong: #324054;
+  --color-primary: #7C5CFF;
+  --color-primary-fg: #FFFFFF;
+  --color-primary-hover: #8E72FF;
+  --color-accent: #A78BFF;
+  --color-accent-fg: #0B0E14;
+  --color-success: #34D399;
+  --color-warning: #F5B14C;
+  --color-danger: #F87171;
+  --color-info: #60A5FA;
+}
