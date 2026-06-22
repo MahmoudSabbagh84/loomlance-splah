@@ -88,7 +88,7 @@ Findings split into coherent tracks. Each big item still gets its own **brainsto
   - **Webhook** on `customer.subscription.created/updated/deleted` + `invoice.paid` → set/clear `profiles.subscription_tier` (and trial handling — signup mentions a 14-day trial).
   - **Self-service:** Stripe **Customer Portal** so users can upgrade/downgrade/cancel/update card.
   - Schema: store `stripe_customer_id`, `stripe_subscription_id`, status on the profile.
-- **Status:** 🆕 captured — major feature; brainstorm → spec → build. Pairs with the **pricing + features finalization** the user flagged.
+- **Status:** ✅ **Built, deployed & verified in TEST mode (2026-06-22).** Edge Functions `create-subscription-checkout` (14-day trial) + `stripe-subscription-webhook` (tier from product metadata) + `create-billing-portal`; dashboard Subscription tab (monthly/annual, manage-billing, post-checkout poll). Verified end-to-end: Checkout → trial → webhook set `tier_1`/trialing. **Live cutover deferred** (create live products/prices/webhooks, swap Supabase secrets to `sk_live_`, re-connect Connect in live) — see `loomlance-dashboard` pricing spec.
 
 ### F7 — User & subscription management (admin) system 🧪 (brainstorming/build) · 🆕 Captured
 - **Scope:** an internal way to **manage users and their subscriptions** — view all users, their tier/subscription status, and act (comp/upgrade/downgrade/cancel, disable, resend confirmation, etc.).
