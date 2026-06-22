@@ -34,10 +34,12 @@
 Splash app build spec changes from "no build" to: `npm ci` → `npm run build:css`; artifacts = repo root (HTML + built `styles.css` + assets). Verify the deploy still serves.
 
 ## Phases
-1. **Foundation:** Tailwind tooling + tokens + config + input.css + build + Amplify spec + Outfit. (No visual change yet beyond wiring.)
-2. **Home (index.html)** rebuilt — review the language.
-3. **Pricing, Contact** rebuilt.
-4. **Signup (+F3)**, **Signin (unified +F2 remember-me)**, **F5 logout**.
-5. Rewrite the design-system doc; final lint/build; deploy.
+1. ✅ **Foundation (done, commit `8f8eebc`):** Tailwind tooling (`package.json`, `tailwind.config.js`, `postcss.config.js`), `src/tokens.css` (mirrors dashboard), `src/input.css` (base + component classes `.btn/.btn-primary/.card/.field-*/.section`), builds to `app.css`. Outfit font. Amplify stays no-build → **commit the built `app.css`**; run `npm run build:css` before each commit (Tailwind tree-shakes by scanned classes).
+2. ✅ **Home (`index.html`) rebuilt (done, commit `5cbf6af`):** dark violet hero + product preview, light feature grid (real shipped features) + "more on the way" line, about, dark CTA band + footer; truthful value props; no inline styles; links `app.css` + Outfit.
+3. 🔜 **Pricing, Contact** rebuilt on the system.
+4. 🔜 **Signup (+F3: drop username, fix email autocomplete)**, **Signin (unified sign-in / F2 + remember-me)**, **F5** (dashboard logout → unified page).
+5. 🔜 Rewrite `LoomLance-Design-System.md` to the new system; final build; deploy.
+
+> **Resume:** next is Phase 3 (pricing.html + contact.html). Pattern per page: replace head (Outfit + `app.css`, keep gtag/lucide/CSP), rebuild markup with Tailwind utilities + the component classes, drop `styles.css` link, `npm run build:css`, verify on the local server, commit. `styles.css` (old orange) can be deleted once ALL pages are off it.
 
 > HARD GATE per phase: review before moving on. Open F2 decision (canonical sign-in: splash vs dashboard) to settle at Phase 4.
