@@ -60,7 +60,8 @@ Findings split into coherent tracks. Each big item still gets its own **brainsto
   - Ensure **autocomplete** attributes align so browsers save/offer **email** for login (`autocomplete="email"` on email, `autocomplete="current-password"`/`"new-password"` appropriately; remove `autocomplete="username"` on the email field, etc.).
   - Reconsider **phone** and **first/last vs. a single name** — collect only what the product needs (names → `display_name`).
   - Tie required fields to what actually flows into Supabase metadata / `profiles`.
-- **Status:** 🆕 captured — decide the final field set at triage (overlaps with F1 form redesign and the pricing/plan review); then trim fields + fix autocomplete.
+- **✅ Fixed (2026-06-22).** Rebuilt `signup.html` on the Tailwind system with a lean field set: **Full name** (`autocomplete="name"` → `display_name`), **email** (`autocomplete="email"`), **password** (`new-password` + live requirements), **confirm** (`new-password`), terms (required), marketing opt-in (optional), plan selector (`?plan=`). **Dropped username** (unused; was the autocomplete culprit) and **phone** (unused; can return as a *verified* field with F8). **Removed the fake card/payment section** entirely — it collected card data into a `'stripe_token_placeholder'`; paid plans now create a free account + plan intent, and the real 14-day trial (card via Stripe) is the in-app F6 flow. Metadata sent: `{ display_name, selected_plan, plan_name, marketing_emails }`. Verified with Playwright (plan select, URL param, validation, password toggle, no console errors).
+- **Status:** ✅ Fixed.
 
 ### F4 — Confirmation email is unbranded (sent as Supabase, not LoomLance) 🆕 Captured
 - **Flow:** signup → email confirmation.

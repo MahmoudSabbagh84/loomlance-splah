@@ -47,4 +47,22 @@
   .section {
     @apply mx-auto max-w-6xl px-5 sm:px-8;
   }
+
+  /* Selectable plan cards (signup) */
+  .plan-option {
+    @apply relative cursor-pointer rounded-xl border border-border bg-bg-elevated p-3 text-left transition-colors hover:border-border-strong;
+  }
+  .plan-option.plan-selected {
+    @apply border-primary ring-1 ring-primary;
+    background-color: color-mix(in srgb, var(--color-primary) 6%, var(--color-bg-elevated));
+  }
+  .plan-check {
+    @apply absolute right-2 top-2 grid size-5 place-items-center rounded-full bg-primary text-primary-fg opacity-0 transition-opacity;
+  }
+  .plan-selected .plan-check {
+    @apply opacity-100;
+  }
+  .plan-badge {
+    @apply absolute -top-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold text-primary-fg;
+  }
 }
