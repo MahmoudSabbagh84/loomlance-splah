@@ -117,6 +117,12 @@ Findings split into coherent tracks. Each big item still gets its own **brainsto
 - **Reconciles with F3:** the signup `phone` field — instead of dropping it (F3), it may become a **verified** field used for anti-fraud. Decide together.
 - **Status:** 🆕 captured — brainstorm the layered approach (likely CAPTCHA + enforced email confirm first, phone-OTP for free tier if abuse appears); needs an SMS provider for phone.
 
+### F9 — Contact form didn't actually send (mailto, no backend) ✅ Fixed
+- **Page:** `contact.html`. **Severity:** P1 (a core "contact us" path silently did nothing).
+- **Observation (live):** the form only built a `mailto:info@loomlance.com` link and set `window.location.href`. On any machine without a configured desktop mail client (most people, who use webmail) clicking "Send" did nothing, yet the page showed "Message sent successfully!" Confirmed via repro: zero backend requests, only a `mailto:` navigation.
+- **Fix (2026-06-22):** new **public** `contact-form` Edge Function (SES-backed, mirrors `send-invoice`; honeypot + server-side validation + header-injection guard; From verified domain, To `info@loomlance.com`, Reply-To submitter). Deployed via Supabase MCP (`verify_jwt:false`, v1 ACTIVE) — reuses the existing `AWS_*`/`SES_FROM_EMAIL` secrets. `contact.html` now `fetch()`-POSTs to it with real success/error states. Verified live: valid → `{ok:true}`, invalid → 400, honeypot → silently dropped.
+- **Status:** ✅ Fixed (function deployed + splash pushed).
+
 ---
 
 ## Non-QA notes (roadmap)
