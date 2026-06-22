@@ -47,7 +47,8 @@ Findings split into coherent tracks. Each big item still gets its own **brainsto
   - (a) **Splash `signin.html` is the only login** → dashboard `/login` redirects to it (keeps "marketing/auth lives on splash"), or
   - (b) **Dashboard login is canonical** → splash "Sign in" links straight to `app.loomlance.com/login` (drop the splash form). Note original architecture was "dashboard owns login."
 - **Also add "Remember me"** — a checkbox that controls session persistence: checked → persist across browser restarts (localStorage, current default); unchecked → session-only (sessionStorage, clears on close). Implement on whichever page becomes canonical (Supabase client `persistSession`/storage handling).
-- **Status:** 🆕 captured — decide canonical page at triage; then implement single page + remember-me.
+- **✅ DECISION (2026-06-22): option (b) — dashboard `/login` is canonical.** Rationale: the dashboard already **owns the session**, `AuthGate` already redirects there, and the page is already on the new design — so there's no cross-domain handoff hop on re-auth and minimal rebuild. The splash `signin.html` form is **dropped/redirected**; splash "Sign in" links point to the dashboard login (hostname-aware: `localhost:4173/login` locally, `app.loomlance.com/login` in prod). Splash keeps **signup** (signup → confirm + plan selection belong there). "Remember me" is built on `LoginPage.jsx` (Supabase storage: localStorage vs sessionStorage by the checkbox; v2 picks storage at client creation, so use a storage adapter / flag).
+- **Status:** 🔧 Triaged — canonical = dashboard `/login`. Build in Phase 4: redesign `signin.html` as a redirect + add Remember-me to the dashboard `LoginPage`.
 
 ### F3 — Reconsider signup data collection + fix email/username autofill mismatch 🆕 Captured
 - **Page(s):** `signup.html` (and the login identifier consistency with `signin.html`).
@@ -76,7 +77,8 @@ Findings split into coherent tracks. Each big item still gets its own **brainsto
 - **Severity:** P2 (UX consistency).
 - **Observation:** logging out of the dashboard sends the user to the **dashboard's** sign-in page — but once sign-in is unified (**F2**), logout should land on that single canonical page instead.
 - **Ask:** after F2 decides the canonical sign-in, point the dashboard's **post-logout redirect** there (e.g. `https://loomlance.com/signin` if the splash page is canonical, or stay on `/login` if the dashboard page wins). Resolve **together with F2**.
-- **Status:** 🆕 captured — dependent on F2 (fix logout redirect when sign-in is unified).
+- **✅ RESOLVED (2026-06-22): no-op.** With F2 = dashboard `/login` canonical, `useSignOut.js` already does `navigate('/login', { replace: true })` → lands on the canonical page. Nothing to change (just verify it stays pointed at `/login` during the Phase 4 sign-in work).
+- **Status:** ✅ Resolved (no change needed) — contingent on F2 = dashboard canonical.
 
 ### F6 — Wire Stripe to collect LoomLance subscriptions (set tier) 🧪 (brainstorming/build) · 🆕 Captured
 - **Scope:** the **platform subscription** billing — LoomLance charging the freelancer for their plan (Solo/Freelancer/Studio → `profiles.subscription_tier`). This is the deferred **pricing-review** task.

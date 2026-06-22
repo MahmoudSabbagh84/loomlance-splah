@@ -42,4 +42,12 @@ Splash app build spec changes from "no build" to: `npm ci` → `npm run build:cs
 
 > **Resume:** next is Phase 4 — `signup.html` then `signin.html`. ⚠️ Both currently carry large per-page `<style>` blocks + the auth JS (`auth-loomlance.js`); rebuild markup on the system but **preserve the auth wiring**. `signin.html` is the **F2 unified sign-in** (decide canonical page vs. dashboard `/login` first) + **remember-me**; then **F5** (point dashboard logout there). `signup.html` gets **F3** (drop username, fix `autocomplete` so the browser saves email). Pattern per page: head → `index.html` style (Outfit + `app.css`), rebuild markup with utilities + component classes, drop `styles.css`, `npm run build:css`, verify on the local server, commit. `styles.css` (old orange) can be deleted once signup + signin are off it (they're the last two).
 
-> HARD GATE per phase: review before moving on. Open F2 decision (canonical sign-in: splash vs dashboard) to settle at Phase 4.
+> HARD GATE per phase: review before moving on.
+
+### F2 / F5 decision — SETTLED (2026-06-22)
+**Canonical sign-in = dashboard `/login`** (option b). The dashboard owns the session + `AuthGate` already targets `/login` + it's already redesigned → no cross-domain handoff hop, minimal rebuild. Consequences for Phase 4:
+- **Splash `signin.html`** → drop the form; make it a **redirect** to the dashboard login (hostname-aware: `localhost:4173/login` / `app.loomlance.com/login`, reuse `auth-loomlance.js`'s `DASHBOARD_URL` logic). Point all splash "Sign in" links at the dashboard login. This also retires `signin.html`'s dependence on `styles.css`.
+- **"Remember me"** → built on the **dashboard `LoginPage.jsx`** (Supabase storage: localStorage when checked, sessionStorage when not — supabase-js v2 selects storage at client creation, so use a storage adapter keyed on the checkbox).
+- **F5 (logout redirect)** → **no-op**: `useSignOut.js` already `navigate('/login')` = the canonical page.
+- **`signup.html`** → redesign on the system + **F3** (drop username, fix `autocomplete` so the browser saves email). Independent of the F2 work.
+- `styles.css` (old orange) can be deleted once `signup.html` is redesigned and `signin.html` is a redirect (the last two consumers).
