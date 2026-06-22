@@ -7,296 +7,223 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-DPWEBECZBQ');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoomLance - Weave it all together</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
+    <title>LoomLance — Weave it all together</title>
+    <meta name="description" content="The developer-first platform for freelancers: clients, projects, contracts, invoicing, time, expenses, and reports — in one place.">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <script>
-        // Force scroll to top on page load/refresh
-        window.addEventListener('load', function() {
-            window.scrollTo(0, 0);
-            // Initialize Lucide icons
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        });
-        
-        // Also scroll to top when page is refreshed
-        window.addEventListener('beforeunload', function() {
-            window.scrollTo(0, 0);
-        });
-        
-        // Scroll-triggered animations
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.scroll-reveal');
-            const windowHeight = window.innerHeight;
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('revealed');
-                }
-            });
-        }
-        
-        // Initial check
-        handleScrollAnimations();
-        
-        // Listen for scroll events
-        window.addEventListener('scroll', handleScrollAnimations);
-    </script>
 </head>
-<body>
+<body class="bg-bg text-fg">
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="LoomLance" class="logo-img">
-                    <span class="logo-text"><span class="loom">Loom</span><span class="lance">Lance</span></span>
-                </a>
-            </div>
-            <div class="nav-menu">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-                <a href="signin.html" class="nav-link sign-in">Sign In</a>
-                <a href="signup.html" class="nav-cta">Get Started</a>
-            </div>
+    <header class="sticky top-0 z-50 border-b border-border bg-bg-elevated/80 backdrop-blur">
+      <nav class="section flex h-16 items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="logo.png" alt="LoomLance" class="size-8">
+          <span class="text-lg font-bold tracking-tight"><span class="text-fg">Loom</span><span class="text-primary">Lance</span></span>
+        </a>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <a href="#features" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Features</a>
+          <a href="pricing.html" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Pricing</a>
+          <a href="#about" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">About</a>
+          <a href="contact.html" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Contact</a>
+          <a href="signin.html" class="rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg">Sign in</a>
+          <a href="signup.html" class="btn-primary">Get started</a>
         </div>
-    </nav>
+      </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-background">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="floating-shape shape-3"></div>
-            <div class="floating-shape shape-4"></div>
-            <div class="floating-shape shape-5"></div>
-            <div class="floating-shape shape-6"></div>
-            <div class="floating-shape shape-7"></div>
-            <div class="floating-shape shape-8"></div>
-            <div class="floating-shape shape-9"></div>
-        </div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Code. Ship. Get Paid. Repeat.
-                </h1>
-                <p class="hero-subtitle">
-                    The developer-first platform that handles your business so you can focus on what you do best: building amazing things. No more juggling 12 different tools just to send an invoice.
-                </p>
-                <div class="hero-actions">
-                    <a href="signup.html" class="btn-primary" style="display: inline-block; text-decoration: none;">Start Free Trial</a>
-                    <a href="signup.html?plan=freelancer" class="btn-secondary" style="display: inline-block; text-decoration: none;">Watch Demo</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">5K+</span>
-                        <span class="stat-label">Developers</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">25K+</span>
-                        <span class="stat-label">Projects Shipped</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">$1.2M+</span>
-                        <span class="stat-label">Dev Hours Billed</span>
-                    </div>
-                </div>
+    <!-- Hero (dark) -->
+    <section class="relative overflow-hidden bg-[#0B0E14] text-white">
+      <div class="pointer-events-none absolute -top-32 left-1/2 size-[40rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.30),transparent_70%)] blur-2xl"></div>
+      <div class="pointer-events-none absolute bottom-0 right-0 size-96 translate-x-1/3 translate-y-1/3 rounded-full bg-[radial-gradient(circle,rgba(109,69,240,0.25),transparent_70%)] blur-2xl"></div>
+      <div class="section relative grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
+            <span class="size-1.5 rounded-full bg-accent"></span> Built for freelance developers
+          </span>
+          <h1 class="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+            Code. Ship.<br>Get paid. Repeat.
+          </h1>
+          <p class="mt-5 max-w-xl text-lg text-white/70">
+            The developer-first platform that runs the business side — clients, contracts, invoicing, time, and expenses — so you can focus on building. No more juggling a dozen tools to send one invoice.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="signup.html" class="btn-primary px-5 py-3 text-base">Start free trial</a>
+            <a href="pricing.html" class="btn px-5 py-3 text-base border border-white/20 text-white hover:bg-white/10">See plans</a>
+          </div>
+          <div class="mt-10 grid max-w-md grid-cols-3 gap-6">
+            <div>
+              <p class="text-sm font-semibold text-white">Free</p>
+              <p class="text-xs text-white/60">Solo plan, forever</p>
             </div>
-            <div class="hero-visual">
-                <div class="dashboard-preview">
-                    <div class="dashboard-header">
-                        <div class="dashboard-nav">
-                            <div class="nav-item active">Dashboard</div>
-                            <div class="nav-item">Clients</div>
-                            <div class="nav-item">Projects</div>
-                            <div class="nav-item">Invoices</div>
-                        </div>
-                    </div>
-                    <div class="dashboard-content">
-                        <div class="dashboard-card">
-                            <h3>Recent Activity</h3>
-                            <div class="activity-item">
-                                <div class="activity-dot"></div>
-                                <span>New client added</span>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-dot"></div>
-                                <span>Invoice #1234 sent</span>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-dot"></div>
-                                <span>Project deadline reminder</span>
-                            </div>
-                        </div>
-                        <div class="dashboard-card">
-                            <h3>This Month</h3>
-                            <div class="metric">
-                                <span class="metric-value">$8,450</span>
-                                <span class="metric-label">Revenue</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <p class="text-sm font-semibold text-white">14 days</p>
+              <p class="text-xs text-white/60">Free trial on paid</p>
             </div>
+            <div>
+              <p class="text-sm font-semibold text-white">Anytime</p>
+              <p class="text-xs text-white/60">Cancel, no lock-in</p>
+            </div>
+          </div>
         </div>
+
+        <!-- Product preview card -->
+        <div class="relative">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur">
+            <div class="rounded-xl bg-[#151B26] p-4">
+              <div class="flex gap-2 border-b border-white/10 pb-3 text-xs text-white/60">
+                <span class="rounded-md bg-primary/20 px-2 py-1 font-medium text-accent">Dashboard</span>
+                <span class="px-2 py-1">Clients</span>
+                <span class="px-2 py-1">Projects</span>
+                <span class="px-2 py-1">Invoices</span>
+              </div>
+              <div class="mt-4 grid grid-cols-2 gap-3">
+                <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+                  <p class="text-xs text-white/60">This month</p>
+                  <p class="mt-1 text-2xl font-bold text-white">$8,450</p>
+                  <p class="text-xs text-success">▲ revenue</p>
+                </div>
+                <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+                  <p class="text-xs text-white/60">Recent activity</p>
+                  <ul class="mt-2 space-y-1.5 text-xs text-white/80">
+                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent"></span> New client added</li>
+                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent"></span> Invoice #1234 sent</li>
+                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent"></span> Payment received</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features scroll-reveal">
-        <div class="container">
-            <div class="section-header">
-                <h2>Built by developers, for developers</h2>
-                <p>Stop context-switching between 12 different apps. LoomLance is your single source of truth for client work. Think of it as your business API.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i data-lucide="git-branch"></i>
-                    </div>
-                    <h3>GitHub/GitLab Integration</h3>
-                    <p>Link repos to projects. Show clients real progress with commit timelines. Finally, a way to prove you're not just browsing Stack Overflow all day.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i data-lucide="zap"></i>
-                    </div>
-                    <h3>Scope Creep Protection</h3>
-                    <p>Client wants "just a small change"? Create professional change requests with one click. No more free work disguised as "quick fixes".</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i data-lucide="shield"></i>
-                    </div>
-                    <h3>Secure Credential Vault</h3>
-                    <p>Store API keys, server credentials, and client logins securely. Share access without revealing passwords. Your security team will thank you.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i data-lucide="credit-card"></i>
-                    </div>
-                    <h3>Smart Invoicing</h3>
-                    <p>Time tracking that doesn't suck. Automatic invoicing based on GitHub commits or manual hours. Get paid for every line of code.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i data-lucide="trending-up"></i>
-                    </div>
-                    <h3>Developer Analytics</h3>
-                    <p>Track your most profitable project types, client satisfaction, and coding velocity. Data-driven decisions for your dev career.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i data-lucide="palette"></i>
-                    </div>
-                    <h3>White-Label Everything</h3>
-                    <p>Custom branding on all client-facing documents. Look like the professional studio you are, not a freelancer using free tools.</p>
-                </div>
-            </div>
+    <!-- Features (light) -->
+    <section id="features" class="bg-bg py-20 lg:py-28">
+      <div class="section">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Your whole client business, in one place</h2>
+          <p class="mt-4 text-lg text-fg-muted">Stop context-switching between a dozen apps. LoomLance is the single source of truth for your freelance work.</p>
         </div>
+        <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="card">
+            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="users"></i></div>
+            <h3 class="mt-4 font-semibold">Clients & projects</h3>
+            <p class="mt-1.5 text-sm text-fg-muted">A clean CRM and a project kanban built for solo devs and small studios.</p>
+          </div>
+          <div class="card">
+            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="file-text"></i></div>
+            <h3 class="mt-4 font-semibold">Contracts & invoicing</h3>
+            <p class="mt-1.5 text-sm text-fg-muted">Professional contracts and branded invoices with PDF export and a public pay page.</p>
+          </div>
+          <div class="card">
+            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="credit-card"></i></div>
+            <h3 class="mt-4 font-semibold">Online payments</h3>
+            <p class="mt-1.5 text-sm text-fg-muted">Get paid by card (Stripe) or PayPal — or keep it simple with cash/bank instructions.</p>
+          </div>
+          <div class="card">
+            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="timer"></i></div>
+            <h3 class="mt-4 font-semibold">Time tracking</h3>
+            <p class="mt-1.5 text-sm text-fg-muted">A built-in timer and manual entries — turn tracked hours into an invoice in one click.</p>
+          </div>
+          <div class="card">
+            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="receipt"></i></div>
+            <h3 class="mt-4 font-semibold">Expenses & receipts</h3>
+            <p class="mt-1.5 text-sm text-fg-muted">Log expenses by project, attach receipts, and bill them back to clients.</p>
+          </div>
+          <div class="card">
+            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="bar-chart-3"></i></div>
+            <h3 class="mt-4 font-semibold">Reports</h3>
+            <p class="mt-1.5 text-sm text-fg-muted">Revenue, profit & loss, aging, and time — with CSV export when you need it.</p>
+          </div>
+        </div>
+        <p class="mt-8 text-center text-sm text-fg-subtle">More on the way: GitHub/GitLab integration, scope-creep change requests, and a secure credential vault.</p>
+      </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="about scroll-reveal">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Built by Devs Who Get It</h2>
-                    <p class="about-intro">We're developers who got tired of explaining to non-technical tools why our workflow is different. <span class="loom">Loom</span><span class="lance">Lance</span> was born from our own frustration with generic freelance tools that clearly weren't built by people who understand the developer experience.</p>
-                    
-                    <p>You know the pain: juggling Slack, GitHub, Trello, QuickBooks, and 8 other tools just to manage one client project. Explaining to clients why their "simple" request will take 3 days. Losing track of which API keys go with which project. We've been there.</p>
-                    
-                    <p><span class="loom">Loom</span><span class="lance">Lance</span> speaks your language. We understand that your GitHub commits tell a story. That scope creep is real. That you need to store credentials securely. That your time tracking should integrate with your actual workflow, not fight against it.</p>
-                    
-                    <p>We're not trying to be everything to everyone. We're laser-focused on making the business side of development as elegant as your code. Because when the admin work flows smoothly, you can focus on what you do best: building amazing things.</p>
-                </div>
-                <div class="about-visual">
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i data-lucide="target"></i>
-                        </div>
-                        <h3>Developer-First</h3>
-                        <p>Built for how developers actually work, not how consultants think they should</p>
-                    </div>
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i data-lucide="code"></i>
-                        </div>
-                        <h3>Your Business API</h3>
-                        <p>Clean, logical interface for the messy world of client management</p>
-                    </div>
-                    <div class="about-card">
-                        <div class="about-icon">
-                            <i data-lucide="zap"></i>
-                        </div>
-                        <h3>Ship Faster</h3>
-                        <p>Less time in spreadsheets, more time in your IDE</p>
-                    </div>
-                </div>
-            </div>
+    <!-- About (light, muted) -->
+    <section id="about" class="bg-bg-muted py-20 lg:py-28">
+      <div class="section grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Built by devs who get it</h2>
+          <p class="mt-4 text-fg-muted">We got tired of explaining to generic freelance tools why a developer's workflow is different. LoomLance speaks your language — your commits tell a story, scope creep is real, and your time tracking should fit how you actually work.</p>
+          <p class="mt-4 text-fg-muted">We're not trying to be everything to everyone. We're focused on making the business side of development as elegant as your code, so when the admin flows smoothly you can get back to building.</p>
         </div>
+        <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          <div class="card flex items-start gap-3">
+            <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="target"></i></div>
+            <div><h3 class="font-semibold">Developer-first</h3><p class="mt-0.5 text-sm text-fg-muted">Built for how developers actually work.</p></div>
+          </div>
+          <div class="card flex items-start gap-3">
+            <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="code"></i></div>
+            <div><h3 class="font-semibold">Your business API</h3><p class="mt-0.5 text-sm text-fg-muted">A clean interface for the messy world of client work.</p></div>
+          </div>
+          <div class="card flex items-start gap-3">
+            <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="zap"></i></div>
+            <div><h3 class="font-semibold">Ship faster</h3><p class="mt-0.5 text-sm text-fg-muted">Less time in spreadsheets, more time in your IDE.</p></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta scroll-reveal">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to debug your business workflow?</h2>
-                <p>Join thousands of developers who've finally found a business tool that doesn't make them want to `git reset --hard` their entire career. 😄</p>
-                <div class="cta-actions">
-                    <a href="signup.html" class="btn-primary large" style="display: inline-block; text-decoration: none;">Start Your Free Trial</a>
-                    <p class="cta-note">No credit card required • 14-day free trial</p>
-                </div>
-            </div>
+    <!-- CTA band (dark) -->
+    <section class="bg-[#0B0E14] text-white">
+      <div class="section py-16 text-center">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Ready to weave it all together?</h2>
+        <p class="mx-auto mt-3 max-w-xl text-white/70">Start free on Solo, or take a paid plan for a 14-day spin. No lock-in — cancel anytime.</p>
+        <div class="mt-7 flex flex-col items-center gap-2">
+          <a href="signup.html" class="btn-primary px-6 py-3 text-base">Start your free trial</a>
+          <p class="text-xs text-white/50">14-day trial on paid plans · Solo is free forever</p>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3><span class="loom">Loom</span><span class="lance">Lance</span></h3>
-                    <p>Weave it all together</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Product</h4>
-                        <a href="index.html#features">Features</a>
-                        <a href="pricing.html">Pricing</a>
-                        <a href="#">Integrations</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <a href="#">About</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Careers</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Support</h4>
-                        <a href="#">Help Center</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="#">Status</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 LoomLance. All rights reserved.</p>
-            </div>
+    <!-- Footer (dark) -->
+    <footer class="bg-[#070A0F] text-white/70">
+      <div class="section grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <div class="text-lg font-bold tracking-tight text-white">Loom<span class="text-accent">Lance</span></div>
+          <p class="mt-2 text-sm text-white/50">Weave it all together.</p>
         </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Product</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="index.html#features" class="hover:text-white">Features</a></li>
+            <li><a href="pricing.html" class="hover:text-white">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Company</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="index.html#about" class="hover:text-white">About</a></li>
+            <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Get started</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="signup.html" class="hover:text-white">Create account</a></li>
+            <li><a href="signin.html" class="hover:text-white">Sign in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div class="section py-5 text-center text-xs text-white/40">© 2026 LoomLance. All rights reserved.</div>
+      </div>
     </footer>
+
+    <script>
+      window.addEventListener('load', function () {
+        if (typeof lucide !== 'undefined') lucide.createIcons()
+      })
+    </script>
 </body>
 </html>
-
