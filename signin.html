@@ -7,324 +7,47 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-DPWEBECZBQ');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - LoomLance</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://zbipqfsqxnvrzhpdjvvy.supabase.co;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <style>
-        .signin-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 20px;
-        }
-        
-        .signin-card {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .signin-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #F39C12, #E67E22);
-        }
-        
-        .signin-logo {
-            margin-bottom: 30px;
-        }
-        
-        .signin-logo img {
-            height: 80px;
-            width: auto;
-            margin-bottom: 15px;
-        }
-        
-        .signin-logo-text {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        
-        .signin-emoji {
-            font-size: 4rem;
-            margin-bottom: 30px;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        .signin-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2D3E50;
-            margin-bottom: 20px;
-        }
-        
-        .signin-subtitle {
-            font-size: 1.2rem;
-            color: #7F8C8D;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .signin-message {
-            background: linear-gradient(135deg, #F39C12, #E67E22);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-        
-        .signin-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .signin-feature {
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            color: #7F8C8D;
-        }
-        
-        .signin-feature-icon {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            display: block;
-        }
-        
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #2D3E50;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(45, 62, 80, 0.3);
-        }
-        
-        .back-home:hover {
-            background: #34495e;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(45, 62, 80, 0.4);
-        }
-        
-        .notify-form {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 16px;
-            margin-top: 30px;
-        }
-        
-        .notify-form h4 {
-            color: #2D3E50;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .notify-input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .notify-input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 2px solid #BDC3C7;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .notify-input:focus {
-            outline: none;
-            border-color: #F39C12;
-        }
-        
-        .notify-btn {
-            background: #F39C12;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        
-        .notify-btn:hover {
-            background: #E67E22;
-            transform: translateY(-1px);
-        }
-        
-        .notify-note {
-            font-size: 0.85rem;
-            color: #7F8C8D;
-            text-align: center;
-        }
-        
-        @media (max-width: 480px) {
-            .signin-card {
-                padding: 40px 25px;
-                margin: 10px;
-            }
-            
-            .signin-title {
-                font-size: 2rem;
-            }
-            
-            .notify-input-group {
-                flex-direction: column;
-            }
-            
-            .notify-btn {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="signin-container">
-        <div class="signin-card">
-            <div class="signin-logo">
-                <a href="index.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.opacity='0.9';" onmouseout="this.style.transform='translateY(0)'; this.style.opacity='1';">
-                    <img src="logo.png" alt="LoomLance">
-                    <div class="signin-logo-text">
-                        <span class="loom">Loom</span><span class="lance">Lance</span>
-                    </div>
-                </a>
-            </div>
-            
-            <h1 class="signin-title">Welcome back</h1>
-            <p class="signin-subtitle">Sign in to your LoomLance dashboard.</p>
-
-            <div id="authError" role="alert" style="display:none; background:#fdecea; border:1px solid #e74c3c; color:#c0392b; padding:12px 16px; border-radius:12px; margin-bottom:20px; font-size:0.95rem; text-align:left;"></div>
-            <div id="authNotice" style="display:none; background:#e8f5e8; border:1px solid #4CAF50; color:#2e7d32; padding:12px 16px; border-radius:12px; margin-bottom:20px; font-size:0.95rem; text-align:left;"></div>
-
-            <form id="signinForm" novalidate style="text-align:left;">
-                <div style="margin-bottom:16px;">
-                    <label for="email" style="display:block; font-weight:600; color:#2D3E50; margin-bottom:6px;">Email</label>
-                    <input type="email" id="email" class="notify-input" style="width:100%;" placeholder="you@example.com" required autocomplete="email" spellcheck="false" maxlength="254">
-                </div>
-                <div style="margin-bottom:8px;">
-                    <label for="password" style="display:block; font-weight:600; color:#2D3E50; margin-bottom:6px;">Password</label>
-                    <input type="password" id="password" class="notify-input" style="width:100%;" placeholder="Your password" required autocomplete="current-password" maxlength="200">
-                </div>
-                <div style="text-align:right; margin-bottom:22px;">
-                    <a href="#" id="forgotLink" style="color:#F39C12; text-decoration:none; font-size:0.9rem; font-weight:500;">Forgot password?</a>
-                </div>
-                <button type="submit" id="signinBtn" class="back-home" style="width:100%; justify-content:center; border:none; cursor:pointer; font-size:1rem;">
-                    Sign in
-                </button>
-            </form>
-
-            <div style="text-align:center; margin:24px 0 16px;">
-                <p style="color:#7F8C8D; font-size:0.9rem;">
-                    Don't have an account? <a href="signup.html" style="color:#F39C12; text-decoration:none; font-weight:500;">Sign up here</a>
-                </p>
-            </div>
-
-            <a href="index.html" style="color:#7F8C8D; text-decoration:none; font-size:0.9rem;">← Back to Home</a>
-        </div>
-    </div>
-    
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script src="auth-loomlance.js"></script>
+    <title>Sign in — LoomLance</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!--
+      Sign-in is unified on the dashboard (app.loomlance.com/login), which owns the
+      session. This page exists only to forward old links / bookmarks there.
+    -->
     <script>
-        const form = document.getElementById('signinForm');
-        const btn = document.getElementById('signinBtn');
-        const errBox = document.getElementById('authError');
-        const noticeBox = document.getElementById('authNotice');
-        const emailEl = document.getElementById('email');
-        const pwEl = document.getElementById('password');
-
-        function showError(msg) {
-            noticeBox.style.display = 'none';
-            errBox.textContent = msg;
-            errBox.style.display = 'block';
-        }
-        function showNotice(msg) {
-            errBox.style.display = 'none';
-            noticeBox.textContent = msg;
-            noticeBox.style.display = 'block';
-        }
-        function setLoading(on) {
-            btn.disabled = on;
-            btn.textContent = on ? 'Signing in…' : 'Sign in';
-        }
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            errBox.style.display = 'none';
-            const email = emailEl.value.trim();
-            const password = pwEl.value;
-            if (!email || !password) { showError('Enter your email and password.'); return; }
-            if (!window.LoomAuth) { showError('Auth failed to load — please refresh.'); return; }
-            setLoading(true);
-            try {
-                await window.LoomAuth.signIn(email, password); // redirects to the dashboard on success
-            } catch (err) {
-                showError(window.LoomAuth.friendly(err));
-                setLoading(false);
-            }
-        });
-
-        document.getElementById('forgotLink').addEventListener('click', async (e) => {
-            e.preventDefault();
-            const email = emailEl.value.trim();
-            if (!email) { showError('Enter your email above first, then click “Forgot password?”.'); return; }
-            if (!window.LoomAuth) { showError('Auth failed to load — please refresh.'); return; }
-            try {
-                await window.LoomAuth.client.auth.resetPasswordForEmail(email, { redirectTo: window.LoomAuth.dashboardUrl + '/reset-password' });
-                showNotice('If an account exists for ' + email + ', a password-reset link is on its way.');
-            } catch (err) {
-                showError(window.LoomAuth.friendly(err));
-            }
-        });
+      (function () {
+        var host = window.location.hostname
+        var isLocal = host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0'
+        var target = (isLocal ? 'http://localhost:4173' : 'https://app.loomlance.com') + '/login'
+        window.__signinTarget = target
+        // Forward immediately, replacing history so Back doesn't bounce here.
+        window.location.replace(target)
+      })()
+    </script>
+</head>
+<body class="bg-bg text-fg">
+    <main class="grid min-h-screen place-items-center px-5">
+      <div class="card max-w-sm text-center">
+        <div class="mx-auto grid size-12 place-items-center rounded-xl bg-primary/10 text-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+        </div>
+        <h1 class="mt-4 text-lg font-bold">Taking you to sign in…</h1>
+        <p class="mt-1.5 text-sm text-fg-muted">Redirecting you to the LoomLance app.</p>
+        <a id="signinLink" href="https://app.loomlance.com/login" class="btn-primary mt-5 w-full">Continue to sign in</a>
+      </div>
+    </main>
+    <script>
+      // Point the manual link at the resolved (hostname-aware) target.
+      var link = document.getElementById('signinLink')
+      if (window.__signinTarget) link.href = window.__signinTarget
     </script>
 </body>
 </html>
