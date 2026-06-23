@@ -157,7 +157,7 @@
 
             <label class="flex items-start gap-2.5 text-sm text-fg-muted">
               <input type="checkbox" id="termsAccepted" name="termsAccepted" class="mt-0.5 size-4 rounded border-border text-primary focus:ring-primary" required>
-              <span>I agree to the <a href="#" id="termsLink" class="text-primary hover:underline">Terms of Service</a> and <a href="#" id="privacyLink" class="text-primary hover:underline">Privacy Policy</a> <span class="text-danger">*</span></span>
+              <span>I agree to the <a href="/terms" target="_blank" rel="noopener" class="text-primary hover:underline">Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener" class="text-primary hover:underline">Privacy Policy</a> <span class="text-danger">*</span></span>
             </label>
 
             <label class="flex items-start gap-2.5 text-sm text-fg-muted">
@@ -378,10 +378,6 @@
         document.getElementById('eyeIcon').classList.toggle('hidden', show)
         document.getElementById('eyeOffIcon').classList.toggle('hidden', !show)
       })
-
-      // Terms / privacy placeholders (legal pages not built yet)
-      document.getElementById('termsLink').addEventListener('click', (e) => { e.preventDefault(); alert('Terms of Service — coming soon.') })
-      document.getElementById('privacyLink').addEventListener('click', (e) => { e.preventDefault(); alert('Privacy Policy — coming soon.') })
 
       // Init
       window.addEventListener('load', function () {
