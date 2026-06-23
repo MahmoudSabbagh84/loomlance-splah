@@ -34,10 +34,26 @@
           <a href="/pricing" class="hidden rounded-md px-3 py-2 text-sm font-medium text-primary sm:block">Pricing</a>
           <a href="/#about" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">About</a>
           <a href="/contact" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Contact</a>
-          <a href="/signin" class="rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg">Sign in</a>
+          <a href="/signin" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Sign in</a>
           <a href="/signup" class="btn-primary">Get started</a>
+          <button id="menuBtn" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" class="grid size-10 place-items-center rounded-md text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg sm:hidden">
+            <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            <svg id="closeIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
         </div>
       </nav>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="hidden border-t border-border bg-bg-elevated sm:hidden">
+        <nav class="section flex flex-col py-2">
+          <a href="/#features" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Features</a>
+          <a href="/pricing" class="rounded-md px-3 py-3 text-sm font-medium text-primary">Pricing</a>
+          <a href="/#about" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">About</a>
+          <a href="/contact" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Contact</a>
+          <a href="/signin" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Sign in</a>
+          <a href="/signup" class="btn-primary mt-2">Get started</a>
+        </nav>
+      </div>
     </header>
 
     <!-- Page header (light) -->
@@ -262,6 +278,26 @@
       window.addEventListener('load', function () {
         if (typeof lucide !== 'undefined') lucide.createIcons()
       })
+    </script>
+    <script>
+      // Mobile navigation menu toggle
+      (function () {
+        var btn = document.getElementById('menuBtn')
+        var menu = document.getElementById('mobileMenu')
+        if (!btn || !menu) return
+        var menuIcon = document.getElementById('menuIcon')
+        var closeIcon = document.getElementById('closeIcon')
+        function setOpen(open) {
+          menu.classList.toggle('hidden', !open)
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false')
+          btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+          if (menuIcon) menuIcon.classList.toggle('hidden', open)
+          if (closeIcon) closeIcon.classList.toggle('hidden', !open)
+        }
+        btn.addEventListener('click', function () { setOpen(menu.classList.contains('hidden')) })
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false) })
+        menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false) }) })
+      })()
     </script>
 </body>
 </html>
