@@ -23,11 +23,11 @@ The visual language for the LoomLance **splash/marketing site** (`loomlance.com`
 
 ## Tooling & build
 - **Tailwind CSS 3.4** (buildful). `npm run build:css` compiles `src/input.css` → `app.css` (minified). `npm run watch:css` for local dev.
-- **Font:** [Outfit](https://fonts.google.com/specimen/Outfit) via Google Fonts (replaces Inter). Loaded per page with a `<link>` + `preconnect`.
+- **Fonts:** **[Outfit](https://fonts.google.com/specimen/Outfit)** for body/UI; **[Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque)** for display headings (`h1`/`h2`). Both via Google Fonts, loaded per page with a `<link>` + `preconnect`. The `h1, h2` font-family rule lives in `src/input.css` (base layer); `h3`, body, and the wordmark stay Outfit. The **marketing site** uses the display face for personality; the **app/dashboard stays all-Outfit** — a deliberate, restrained divergence (cohesive palette + components, more expressive type on marketing).
 - **Icons:** [Lucide](https://lucide.dev) via the UMD script (`<i data-lucide="...">` + `lucide.createIcons()` on load). For icons that must toggle at runtime, use inline `<svg>` instead — `createIcons()` replaces the `<i>` placeholder.
 - **Hosting:** AWS Amplify serves the static files **no-build**, so the compiled `app.css` is committed. **Always run `npm run build:css` before committing** any markup/token change — Tailwind tree-shakes by scanned classes (`content: ['./*.html']`), so a class that isn't in an HTML file won't exist in `app.css`.
 
-Per-page `<head>` (mirror `index.html`): `app.css`, the Outfit `<link>`, gtag, and the Lucide script. (Security headers like CSP belong at the Amplify/server layer, not as `<meta>` — the old per-page CSP was non-functional and was removed.)
+Per-page `<head>` (mirror `index.html`): `app.css`, the Bricolage Grotesque + Outfit `<link>`, gtag, and the Lucide script. (Security headers like CSP belong at the Amplify/server layer, not as `<meta>` — the old per-page CSP was non-functional and was removed.)
 
 ---
 
@@ -97,7 +97,10 @@ theme: { extend: {
 
 ---
 
-## Typography (Outfit)
+## Typography (Outfit + Bricolage Grotesque)
+
+**Display headings (`h1`, `h2`) render in Bricolage Grotesque** (set in `src/input.css` base layer) for marketing personality; `h3`, body, and the wordmark stay **Outfit**. The size/weight classes below are unchanged.
+
 | Role | Classes |
 |---|---|
 | Hero `h1` | `text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl` |

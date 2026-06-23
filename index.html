@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="app.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body class="bg-bg text-fg">
@@ -91,31 +91,53 @@
           </div>
         </div>
 
-        <!-- Product preview card -->
+        <!-- Product preview (stylized) -->
         <div class="relative">
-          <div class="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur">
-            <div class="rounded-xl bg-[#151B26] p-4">
-              <div class="flex gap-2 border-b border-white/10 pb-3 text-xs text-white/60">
-                <span class="rounded-md bg-primary/20 px-2 py-1 font-medium text-accent">Dashboard</span>
-                <span class="px-2 py-1">Clients</span>
-                <span class="px-2 py-1">Projects</span>
-                <span class="px-2 py-1">Invoices</span>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-2.5 shadow-2xl backdrop-blur">
+            <div class="rounded-xl border border-white/5 bg-[#151B26] p-4">
+              <!-- window bar -->
+              <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <div class="flex gap-1.5 text-xs">
+                  <span class="rounded-md bg-primary/20 px-2 py-1 font-medium text-accent">Dashboard</span>
+                  <span class="px-2 py-1 text-white/50">Invoices</span>
+                  <span class="hidden px-2 py-1 text-white/50 sm:inline">Time</span>
+                </div>
+                <span class="text-[10px] text-white/40">June 2026</span>
               </div>
-              <div class="mt-4 grid grid-cols-2 gap-3">
+              <!-- revenue + mini chart -->
+              <div class="mt-4 rounded-lg border border-white/10 bg-white/5 p-3.5">
+                <div class="flex items-end justify-between">
+                  <div>
+                    <p class="text-[11px] text-white/60">Revenue this month</p>
+                    <p class="mt-0.5 text-2xl font-bold tracking-tight text-white tabular-nums">$8,450</p>
+                  </div>
+                  <span class="rounded-full bg-success/15 px-2 py-0.5 text-[10px] font-medium text-success">+18%</span>
+                </div>
+                <div class="mt-3 flex h-14 items-end gap-1.5" aria-hidden="true">
+                  <div class="h-[40%] flex-1 rounded-t bg-primary/30"></div>
+                  <div class="h-[58%] flex-1 rounded-t bg-primary/30"></div>
+                  <div class="h-[34%] flex-1 rounded-t bg-primary/40"></div>
+                  <div class="h-[72%] flex-1 rounded-t bg-primary/50"></div>
+                  <div class="h-[55%] flex-1 rounded-t bg-primary/40"></div>
+                  <div class="h-full flex-1 rounded-t bg-accent"></div>
+                </div>
+              </div>
+              <!-- stat tiles -->
+              <div class="mt-3 grid grid-cols-2 gap-3">
                 <div class="rounded-lg border border-white/10 bg-white/5 p-3">
-                  <p class="text-xs text-white/60">This month</p>
-                  <p class="mt-1 text-2xl font-bold text-white">$8,450</p>
-                  <p class="text-xs text-success">▲ revenue</p>
+                  <p class="text-[11px] text-white/60">Outstanding</p>
+                  <p class="mt-0.5 text-base font-semibold text-white tabular-nums">$3,200</p>
                 </div>
                 <div class="rounded-lg border border-white/10 bg-white/5 p-3">
-                  <p class="text-xs text-white/60">Recent activity</p>
-                  <ul class="mt-2 space-y-1.5 text-xs text-white/80">
-                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent"></span> New client added</li>
-                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent"></span> Invoice #1234 sent</li>
-                    <li class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent"></span> Payment received</li>
-                  </ul>
+                  <p class="text-[11px] text-white/60">Overdue</p>
+                  <p class="mt-0.5 text-base font-semibold tabular-nums text-warning">2</p>
                 </div>
               </div>
+              <!-- activity -->
+              <ul class="mt-3 space-y-2 text-xs text-white/80">
+                <li class="flex items-center gap-2"><span class="size-1.5 shrink-0 rounded-full bg-success"></span> Payment received <span class="ml-auto tabular-nums text-white/40">$1,200</span></li>
+                <li class="flex items-center gap-2"><span class="size-1.5 shrink-0 rounded-full bg-accent"></span> Invoice INV-0042 sent <span class="ml-auto text-white/40">Globex</span></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -129,36 +151,61 @@
           <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Your whole client business, in one place</h2>
           <p class="mt-4 text-lg text-fg-muted">Stop context-switching between a dozen apps. LoomLance is the single source of truth for your freelance work.</p>
         </div>
-        <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="card">
-            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="users"></i></div>
-            <h3 class="mt-4 font-semibold">Clients & projects</h3>
-            <p class="mt-1.5 text-sm text-fg-muted">A clean CRM and a project kanban built for solo devs and small studios.</p>
+        <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:auto-rows-fr">
+          <!-- Flagship feature -->
+          <div class="card flex flex-col justify-between sm:col-span-2 lg:col-span-3 lg:row-span-2">
+            <div>
+              <div class="flex items-center gap-3">
+                <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="file-text"></i></div>
+                <h3 class="text-lg font-semibold">Contracts &amp; invoicing</h3>
+              </div>
+              <p class="mt-3 text-sm text-fg-muted">Professional contracts and branded invoices with PDF export and a public pay page. Send a polished invoice in minutes, not spreadsheets.</p>
+            </div>
+            <ul class="mt-6 grid gap-2 text-sm text-fg-muted sm:grid-cols-3">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 shrink-0 text-success"></i> PDF export</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 shrink-0 text-success"></i> Public pay page</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="size-4 shrink-0 text-success"></i> Branding</li>
+            </ul>
           </div>
-          <div class="card">
-            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="file-text"></i></div>
-            <h3 class="mt-4 font-semibold">Contracts & invoicing</h3>
-            <p class="mt-1.5 text-sm text-fg-muted">Professional contracts and branded invoices with PDF export and a public pay page.</p>
+          <!-- Online payments -->
+          <div class="card lg:col-span-3">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="credit-card"></i></div>
+              <h3 class="font-semibold">Online payments</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">Get paid by card (Stripe) or PayPal, or keep it simple with cash and bank instructions.</p>
           </div>
-          <div class="card">
-            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="credit-card"></i></div>
-            <h3 class="mt-4 font-semibold">Online payments</h3>
-            <p class="mt-1.5 text-sm text-fg-muted">Get paid by card (Stripe) or PayPal, or keep it simple with cash and bank instructions.</p>
+          <!-- Clients & projects -->
+          <div class="card lg:col-span-3">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="users"></i></div>
+              <h3 class="font-semibold">Clients &amp; projects</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">A clean CRM and a project kanban built for solo devs and small studios.</p>
           </div>
-          <div class="card">
-            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="timer"></i></div>
-            <h3 class="mt-4 font-semibold">Time tracking</h3>
-            <p class="mt-1.5 text-sm text-fg-muted">A built-in timer and manual entries. Turn tracked hours into an invoice in one click.</p>
+          <!-- Time tracking -->
+          <div class="card lg:col-span-2">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="timer"></i></div>
+              <h3 class="font-semibold">Time tracking</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">A built-in timer and manual entries. Turn tracked hours into an invoice in one click.</p>
           </div>
-          <div class="card">
-            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="receipt"></i></div>
-            <h3 class="mt-4 font-semibold">Expenses & receipts</h3>
-            <p class="mt-1.5 text-sm text-fg-muted">Log expenses by project, attach receipts, and bill them back to clients.</p>
+          <!-- Expenses -->
+          <div class="card lg:col-span-2">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="receipt"></i></div>
+              <h3 class="font-semibold">Expenses &amp; receipts</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">Log expenses by project, attach receipts, and bill them back to clients.</p>
           </div>
-          <div class="card">
-            <div class="grid size-11 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="bar-chart-3"></i></div>
-            <h3 class="mt-4 font-semibold">Reports</h3>
-            <p class="mt-1.5 text-sm text-fg-muted">Revenue, profit & loss, aging, and time, with CSV export when you need it.</p>
+          <!-- Reports -->
+          <div class="card lg:col-span-2">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="bar-chart-3"></i></div>
+              <h3 class="font-semibold">Reports</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">Revenue, profit &amp; loss, aging, and time, with CSV export when you need it.</p>
           </div>
         </div>
         <p class="mt-8 text-center text-sm text-fg-subtle">More on the way: GitHub/GitLab integration, scope-creep change requests, and a secure credential vault.</p>

@@ -22,6 +22,10 @@
   h1, h2, h3 {
     text-wrap: balance;
   }
+  /* Display headings get a characterful face; body stays Outfit (one-product cohesion) */
+  h1, h2 {
+    font-family: 'Bricolage Grotesque', 'Outfit', system-ui, -apple-system, sans-serif;
+  }
   /* Respect users who reduce motion: neutralize transitions/animations */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
