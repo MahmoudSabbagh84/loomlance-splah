@@ -227,6 +227,7 @@
         studio: { name: 'Studio', price: '$49/mo' },
       }
       let selectedPlan = 'freelancer'
+      let selectedPeriod = 'monthly'
 
       function applyPlan(id) {
         if (!PLANS[id]) return
@@ -243,7 +244,7 @@
           note.textContent = 'Solo is free forever — no card required.'
         } else {
           btnText.textContent = 'Create account'
-          note.textContent = `You'll start your 14-day ${PLANS[id].name} trial (card required) from your dashboard after signing in.`
+          note.textContent = `We'll start your 14-day ${PLANS[id].name} trial (card required) right after you sign in.`
         }
       }
 
@@ -344,6 +345,7 @@
           // handle_new_user() reads display_name; the rest is plan intent / preferences.
           display_name: fullName,
           selected_plan: selectedPlan,
+          selected_period: selectedPeriod,
           plan_name: PLANS[selectedPlan].name,
           marketing_emails: document.getElementById('marketingEmails').checked,
         }
@@ -362,7 +364,7 @@
         document.getElementById('confirmEmail').textContent = email
         if (selectedPlan !== 'solo') {
           const note = document.getElementById('confirmPlanNote')
-          note.textContent = `After signing in, start your 14-day ${PLANS[selectedPlan].name} trial from Settings → Subscription.`
+          note.textContent = `After you confirm and sign in, we'll start your 14-day ${PLANS[selectedPlan].name} trial automatically.`
           note.classList.remove('hidden')
         }
         document.getElementById('checkEmailView').classList.remove('hidden')
@@ -382,7 +384,9 @@
       // Init
       window.addEventListener('load', function () {
         if (typeof lucide !== 'undefined') lucide.createIcons()
-        const planFromUrl = new URLSearchParams(window.location.search).get('plan')
+        const params = new URLSearchParams(window.location.search)
+        const planFromUrl = params.get('plan')
+        selectedPeriod = params.get('period') === 'annual' ? 'annual' : 'monthly'
         applyPlan(planFromUrl && PLANS[planFromUrl] ? planFromUrl : selectedPlan)
         updatePasswordReqs()
       })

@@ -127,7 +127,7 @@
             <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Scope-creep module <em>(soon)</em></span></li>
             <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Credential vault <em>(soon)</em></span></li>
           </ul>
-          <a href="/signup?plan=freelancer" class="btn-primary mt-6 w-full">Start free trial</a>
+          <a href="/signup?plan=freelancer" data-plan="freelancer" class="btn-primary mt-6 w-full">Start free trial</a>
         </div>
 
         <!-- Studio -->
@@ -149,7 +149,7 @@
             <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 size-4 shrink-0 text-success"></i><span>CSV export</span></li>
             <li class="flex items-start gap-2.5 text-fg-subtle"><i data-lucide="clock" class="mt-0.5 size-4 shrink-0"></i><span>Income forecasting <em>(soon)</em></span></li>
           </ul>
-          <a href="/signup?plan=studio" class="btn-secondary mt-6 w-full">Start free trial</a>
+          <a href="/signup?plan=studio" data-plan="studio" class="btn-secondary mt-6 w-full">Start free trial</a>
         </div>
 
         <!-- Agency (coming soon) -->
@@ -276,6 +276,11 @@
         monthlyBtn.classList.toggle('bg-primary', !annual)
         monthlyBtn.classList.toggle('text-primary-fg', !annual)
         monthlyBtn.classList.toggle('text-fg-muted', annual)
+
+        // Carry the chosen period into the signup CTAs.
+        document.querySelectorAll('a[data-plan]').forEach((a) => {
+          a.href = `/signup?plan=${a.dataset.plan}&period=${annual ? 'annual' : 'monthly'}`
+        })
       }
 
       monthlyBtn.addEventListener('click', () => setBilling(false))
