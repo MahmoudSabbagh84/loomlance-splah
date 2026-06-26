@@ -179,13 +179,33 @@
           </form>
         </div>
 
-        <!-- Check-email view (shown when confirmation is required) -->
+        <!-- Verify-code view (shown when confirmation is required) -->
         <div id="checkEmailView" class="hidden text-center">
           <div class="mx-auto grid size-12 place-items-center rounded-xl bg-primary/10 text-primary"><i data-lucide="mail-check"></i></div>
           <h1 class="mt-4 text-2xl font-bold tracking-tight">Check your email</h1>
-          <p class="mt-2 text-sm text-fg-muted">We sent a confirmation link to <strong id="confirmEmail" class="text-fg"></strong>. Click it to activate your account, then sign in.</p>
+          <p class="mt-2 text-sm text-fg-muted">We sent a 6-digit code to <strong id="confirmEmail" class="text-fg"></strong>. Enter it below to activate your account.</p>
           <p id="confirmPlanNote" class="mt-3 hidden rounded-lg bg-bg-muted p-3 text-sm text-fg-muted"></p>
-          <a href="/signin" class="btn-primary mt-6 w-full">Go to sign in</a>
+
+          <div id="otpError" role="alert" class="mt-5 hidden rounded-lg border border-danger/30 bg-danger/10 p-3 text-sm text-danger"></div>
+
+          <form id="otpForm" novalidate class="mt-5 space-y-4">
+            <div>
+              <label for="otpCode" class="sr-only">Verification code</label>
+              <input type="text" id="otpCode" name="otpCode" inputmode="numeric" autocomplete="one-time-code"
+                     pattern="[0-9]*" maxlength="6" required
+                     class="field-input text-center text-2xl font-semibold"
+                     style="letter-spacing:0.4em"
+                     placeholder="000000">
+            </div>
+            <button type="submit" class="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60" id="otpBtn">
+              <span id="otpSpinner" class="hidden"><i data-lucide="loader-2" class="size-4 animate-spin"></i></span>
+              <span id="otpBtnText">Verify &amp; continue</span>
+            </button>
+          </form>
+
+          <p class="mt-4 text-sm text-fg-muted">
+            Didn't get it? <button type="button" id="resendBtn" class="font-medium text-primary hover:underline disabled:cursor-not-allowed disabled:text-fg-subtle disabled:no-underline">Resend code</button>
+          </p>
           <a href="/" class="mt-3 inline-block text-sm text-fg-muted hover:text-fg">← Back to home</a>
         </div>
       </div>
@@ -359,17 +379,76 @@
         }
       })
 
+      let pendingEmail = ''
+
       function showCheckEmail(email) {
+        pendingEmail = email
         document.getElementById('signupView').classList.add('hidden')
         document.getElementById('confirmEmail').textContent = email
         if (selectedPlan !== 'solo') {
           const note = document.getElementById('confirmPlanNote')
-          note.textContent = `After you confirm and sign in, we'll start your 14-day ${PLANS[selectedPlan].name} trial automatically.`
+          note.textContent = `After you verify, we'll start your 14-day ${PLANS[selectedPlan].name} trial automatically.`
           note.classList.remove('hidden')
         }
         document.getElementById('checkEmailView').classList.remove('hidden')
         window.scrollTo({ top: 0, behavior: 'smooth' })
+        const input = document.getElementById('otpCode')
+        if (input) setTimeout(() => input.focus(), 50)
       }
+
+      // --- OTP verification ---
+      function showOtpError(msg) {
+        const box = document.getElementById('otpError')
+        box.textContent = msg
+        box.classList.remove('hidden')
+      }
+      function setOtpLoading(on) {
+        document.getElementById('otpSpinner').classList.toggle('hidden', !on)
+        document.getElementById('otpBtn').disabled = on
+      }
+
+      // Keep the code numeric and capped at 6 digits.
+      document.getElementById('otpCode').addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6)
+        document.getElementById('otpError').classList.add('hidden')
+      })
+
+      document.getElementById('otpForm').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const code = document.getElementById('otpCode').value.trim()
+        if (code.length !== 6) { showOtpError('Enter the 6-digit code from your email.'); return }
+        if (!window.LoomAuth) { showOtpError('Auth failed to load — please refresh.'); return }
+        setOtpLoading(true)
+        try {
+          // On success LoomAuth.verifySignupOtp hands the session off to the dashboard (redirects).
+          await window.LoomAuth.verifySignupOtp(pendingEmail, code)
+        } catch (err) {
+          showOtpError(window.LoomAuth.friendly(err))
+          setOtpLoading(false)
+        }
+      })
+
+      // Resend with a 30s cooldown to avoid spamming / rate limits.
+      let resendTimer = null
+      document.getElementById('resendBtn').addEventListener('click', async () => {
+        const btn = document.getElementById('resendBtn')
+        if (btn.disabled || !window.LoomAuth) return
+        try {
+          await window.LoomAuth.resendSignup(pendingEmail)
+        } catch (err) {
+          showOtpError(window.LoomAuth.friendly(err)); return
+        }
+        document.getElementById('otpError').classList.add('hidden')
+        let left = 30
+        btn.disabled = true
+        const tick = () => {
+          btn.textContent = left > 0 ? `Resend in ${left}s` : 'Resend code'
+          if (left <= 0) { clearInterval(resendTimer); btn.disabled = false; return }
+          left--
+        }
+        tick()
+        resendTimer = setInterval(tick, 1000)
+      })
 
       // Password visibility toggle (inline SVGs — lucide replaces <i> placeholders,
       // so we toggle two static icons rather than re-rendering).

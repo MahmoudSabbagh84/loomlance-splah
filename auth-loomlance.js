@@ -53,6 +53,7 @@
     if (/user already registered|already.*exists/i.test(m)) return 'An account with this email already exists. Try signing in.'
     if (/password/i.test(m) && /at least|weak|short/i.test(m)) return 'Password is too weak.'
     if (/rate limit|too many/i.test(m)) return 'Too many attempts — please wait a moment and try again.'
+    if (/expired or is invalid|invalid.*token|invalid.*code|otp.*expired/i.test(m)) return 'That code is invalid or expired — request a new one.'
     return m
   }
 
@@ -83,6 +84,22 @@
         return { needsConfirmation: false }
       }
       return { needsConfirmation: true }
+    },
+
+    // Verify the signup OTP code from the confirmation email. On success the session is issued
+    // here and handed off to the dashboard (same path as signIn) — no email link needed.
+    verifySignupOtp: async function (email, code) {
+      var r = await client.auth.verifyOtp({ email: email, token: code, type: 'signup' })
+      if (r.error) throw r.error
+      handoff(r.data.session)
+      return r.data
+    },
+
+    // Resend the signup confirmation email (issues a fresh code).
+    resendSignup: async function (email) {
+      var r = await client.auth.resend({ type: 'signup', email: email })
+      if (r.error) throw r.error
+      return true
     },
   }
 })()
