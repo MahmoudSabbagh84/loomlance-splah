@@ -23,17 +23,17 @@
 <body class="bg-bg text-fg">
 
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 border-b border-border bg-bg-elevated/80 backdrop-blur">
+    <header class="sticky top-0 z-50 border-b border-border bg-bg-elevated">
       <nav class="section flex h-16 items-center justify-between">
         <a href="/" class="flex items-center gap-2">
-          <img src="logo.png" alt="LoomLance" class="size-8">
+          <img src="logo.png" alt="" class="size-8">
           <span class="text-lg font-bold tracking-tight"><span class="text-fg">Loom</span><span class="text-primary">Lance</span></span>
         </a>
         <div class="flex items-center gap-1 sm:gap-2">
           <a href="/#features" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Features</a>
           <a href="/pricing" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Pricing</a>
           <a href="/#about" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">About</a>
-          <a href="/contact" class="hidden rounded-md px-3 py-2 text-sm font-medium text-primary sm:block">Contact</a>
+          <a href="/contact" class="hidden rounded-md px-3 py-2 text-sm font-medium text-primary-strong sm:block">Contact</a>
           <a href="/signin" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Sign in</a>
           <a href="/signup" class="btn-primary">Get started</a>
           <button id="menuBtn" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" class="grid size-10 place-items-center rounded-md text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg sm:hidden">
@@ -49,13 +49,14 @@
           <a href="/#features" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Features</a>
           <a href="/pricing" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Pricing</a>
           <a href="/#about" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">About</a>
-          <a href="/contact" class="rounded-md px-3 py-3 text-sm font-medium text-primary">Contact</a>
+          <a href="/contact" class="rounded-md px-3 py-3 text-sm font-medium text-primary-strong">Contact</a>
           <a href="/signin" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Sign in</a>
           <a href="/signup" class="btn-primary mt-2">Get started</a>
         </nav>
       </div>
     </header>
 
+    <main>
     <!-- Contact (light) -->
     <section class="bg-bg py-16 lg:py-20">
       <div class="section">
@@ -72,7 +73,7 @@
               <ul class="mt-5 space-y-5">
                 <li class="flex items-start gap-4">
                   <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="mail"></i></div>
-                  <div><h3 class="text-sm font-semibold">Email us</h3><p class="mt-0.5 text-sm text-fg-muted"><a href="mailto:info@loomlance.com" class="text-primary hover:underline">info@loomlance.com</a></p></div>
+                  <div><h3 class="text-sm font-semibold">Email us</h3><p class="mt-0.5 text-sm text-fg-muted"><a href="mailto:info@loomlance.com" class="text-primary-strong hover:underline">info@loomlance.com</a></p></div>
                 </li>
                 <li class="flex items-start gap-4">
                   <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="message-circle"></i></div>
@@ -140,6 +141,8 @@
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- Footer (dark) -->
     <footer class="bg-[#070A0F] text-white/70">

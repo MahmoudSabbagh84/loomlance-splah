@@ -18,7 +18,9 @@ module.exports = {
           DEFAULT: 'var(--color-primary)',
           fg: 'var(--color-primary-fg)',
           hover: 'var(--color-primary-hover)',
+          strong: 'var(--color-primary-strong)',
         },
+        'primary-strong': 'var(--color-primary-strong)',
         accent: {
           DEFAULT: 'var(--color-accent)',
           fg: 'var(--color-accent-fg)',

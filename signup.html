@@ -69,7 +69,7 @@
 
     <main class="mx-auto flex min-h-screen max-w-xl flex-col justify-center px-5 py-10">
       <a href="/" class="mx-auto mb-6 flex items-center gap-2">
-        <img src="logo.png" alt="LoomLance" class="size-9">
+        <img src="logo.png" alt="" class="size-9">
         <span class="text-xl font-bold tracking-tight"><span class="text-fg">Loom</span><span class="text-primary">Lance</span></span>
       </a>
 
@@ -157,7 +157,7 @@
 
             <label class="flex items-start gap-2.5 text-sm text-fg-muted">
               <input type="checkbox" id="termsAccepted" name="termsAccepted" class="mt-0.5 size-4 rounded border-border text-primary focus:ring-primary" required>
-              <span>I agree to the <a href="/terms" target="_blank" rel="noopener" class="text-primary hover:underline">Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener" class="text-primary hover:underline">Privacy Policy</a> <span class="text-danger">*</span></span>
+              <span>I agree to the <a href="/terms" target="_blank" rel="noopener" class="text-primary-strong hover:underline">Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener" class="text-primary-strong hover:underline">Privacy Policy</a> <span class="text-danger">*</span></span>
             </label>
 
             <label class="flex items-start gap-2.5 text-sm text-fg-muted">
@@ -170,7 +170,7 @@
               <span id="signupBtnText">Create free account</span>
             </button>
 
-            <p class="text-center text-sm text-fg-muted">Already have an account? <a href="/signin" class="text-primary hover:underline">Sign in</a></p>
+            <p class="text-center text-sm text-fg-muted">Already have an account? <a href="/signin" class="text-primary-strong hover:underline">Sign in</a></p>
 
             <div class="flex items-center justify-center gap-1.5 text-xs text-fg-subtle">
               <i data-lucide="shield-check" class="size-3.5"></i>
@@ -182,7 +182,7 @@
         <!-- Verify-code view (shown when confirmation is required) -->
         <div id="checkEmailView" class="hidden text-center">
           <div class="mx-auto grid size-12 place-items-center rounded-xl bg-primary/10 text-primary"><i data-lucide="mail-check"></i></div>
-          <h1 class="mt-4 text-2xl font-bold tracking-tight">Check your email</h1>
+          <h2 class="mt-4 text-2xl font-bold tracking-tight">Check your email</h2>
           <p class="mt-2 text-sm text-fg-muted">We sent a code to <strong id="confirmEmail" class="text-fg"></strong>. Enter it below to activate your account.</p>
           <p id="confirmPlanNote" class="mt-3 hidden rounded-lg bg-bg-muted p-3 text-sm text-fg-muted"></p>
 
@@ -204,7 +204,7 @@
           </form>
 
           <p class="mt-4 text-sm text-fg-muted">
-            Didn't get it? <button type="button" id="resendBtn" class="font-medium text-primary hover:underline disabled:cursor-not-allowed disabled:text-fg-subtle disabled:no-underline">Resend code</button>
+            Didn't get it? <button type="button" id="resendBtn" class="font-medium text-primary-strong hover:underline disabled:cursor-not-allowed disabled:text-fg-subtle disabled:no-underline">Resend code</button>
           </p>
           <a href="/" class="mt-3 inline-block text-sm text-fg-muted hover:text-fg">← Back to home</a>
         </div>
