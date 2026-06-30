@@ -4,3 +4,7 @@ node_modules/
 # Impeccable design tooling — transient (commit critique snapshots only)
 .impeccable/hook.cache.json
 .impeccable/config.local.json
+
+# Secrets — never commit private keys
+*.pem
+*.pk8.pem
