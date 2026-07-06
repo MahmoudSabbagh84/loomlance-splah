@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 // Mirrors loomlance-dashboard/tailwind.config.js so utility classes match across the app.
 module.exports = {
-  content: ['./*.html'],
+  content: ['./*.html', './blog/**/*.html'],
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
@@ -35,5 +35,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
