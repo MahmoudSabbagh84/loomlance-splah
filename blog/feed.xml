@@ -5,6 +5,13 @@
     <link>https://loomlance.com/blog</link>
     <description>Feature releases, product updates, and press from the LoomLance team.</description>
     <item>
+      <title>Test Post</title>
+      <link>https://loomlance.com/blog/test-post</link>
+      <pubDate>Mon, 06 Jul 2026 22:44:45 GMT</pubDate>
+      <description>This is a test post</description>
+      <guid isPermaLink="true">https://loomlance.com/blog/test-post</guid>
+    </item>
+    <item>
       <title>The Developer-First Freelance Platform: Why LoomLance Is Built Differently</title>
       <link>https://krispitech.com/the-developer-first-freelance-platform-why-loomlance-is-built-differently/</link>
       <pubDate>Thu, 02 Jul 2026 12:00:00 GMT</pubDate>
