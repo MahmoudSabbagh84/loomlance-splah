@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>LoomLance Blog</title>
+    <link>https://loomlance.com/blog</link>
+    <description>Feature releases, product updates, and press from the LoomLance team.</description>
+    <item>
+      <title>The Developer-First Freelance Platform: Why LoomLance Is Built Differently</title>
+      <link>https://krispitech.com/the-developer-first-freelance-platform-why-loomlance-is-built-differently/</link>
+      <pubDate>Thu, 02 Jul 2026 12:00:00 GMT</pubDate>
+      <description>KrispiTech takes a look at LoomLance and why the admin side of your work shouldn&apos;t be harder than the code.</description>
+      <guid isPermaLink="false">https://krispitech.com/the-developer-first-freelance-platform-why-loomlance-is-built-differently/</guid>
+    </item>
+  </channel>
+</rss>
