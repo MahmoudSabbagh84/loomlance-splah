@@ -43,3 +43,37 @@ test('rss is valid-ish and escapes', () => {
 test('escapeXml', () => {
   assert.equal(escapeXml('<a>&"\''), '&lt;a&gt;&amp;&quot;&apos;')
 })
+
+// --- Attribute-context XSS regressions (hostile URL/title fields) ---
+
+const hostilePost = {
+  slug: 'x', title: 'A "quoted" title', excerpt: 'Safe excerpt.',
+  body_md: 'Body.', cover_image_url: 'https://x.com/a.png" onerror="alert(2)',
+  category: 'release', external_url: 'https://evil.com/x" onmouseover="alert(1)',
+  published_at: '2026-07-06T12:00:00Z',
+}
+const hostileInternalPost = { ...hostilePost, external_url: null }
+
+test('index page escapes hostile URLs/titles in attribute context', () => {
+  const html = renderIndexPage([hostilePost])
+  assert.doesNotMatch(html, /" onmouseover=/)
+  assert.doesNotMatch(html, /" onerror=/)
+  // escaped URLs still land inside their attributes
+  assert.match(html, /href="https:\/\/evil\.com\/x&quot; onmouseover=&quot;alert\(1\)"/)
+  assert.match(html, /src="https:\/\/x\.com\/a\.png&quot; onerror=&quot;alert\(2\)"/)
+})
+
+test('post page escapes hostile canonical/og:image/title in attribute context', () => {
+  const html = renderPostPage(hostileInternalPost)
+  assert.doesNotMatch(html, /" onmouseover=/)
+  assert.doesNotMatch(html, /" onerror=/)
+  assert.match(html, /rel="canonical" href="https:\/\/loomlance\.com\/blog\/x"/)
+  assert.match(html, /property="og:image" content="https:\/\/x\.com\/a\.png&quot; onerror=&quot;alert\(2\)"/)
+  assert.match(html, /A &quot;quoted&quot; title/)
+})
+
+test('post page with hostile external canonical escapes it', () => {
+  const html = renderPostPage(hostilePost)
+  assert.doesNotMatch(html, /" onmouseover=/)
+  assert.match(html, /rel="canonical" href="https:\/\/evil\.com\/x&quot; onmouseover=&quot;alert\(1\)"/)
+})

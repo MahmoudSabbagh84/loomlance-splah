@@ -31,6 +31,8 @@ export function escapeXml(s) {
 }
 
 export function renderMarkdown(md) {
+  // Deliberate relaxation: `a` may carry target/rel as authored (no forced
+  // rel="noopener") because post authors are trusted (admin-only CMS).
   return sanitizeHtml(marked.parse(md ?? ''), {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'h1', 'h2']),
     allowedAttributes: {
@@ -67,7 +69,10 @@ function categoryChip(category) {
 export function pageShell({ title, description, canonical, ogImage, ogType, bodyHtml }) {
   const safeTitle = escapeHtml(title)
   const safeDescription = escapeHtml(description)
-  const image = ogImage || `${SITE_URL}/logo-1024.png`
+  // Escape URL-ish values too: pageShell defends its own attribute contexts
+  // rather than trusting callers to pre-escape canonical/og:image.
+  const safeCanonical = escapeHtml(canonical)
+  const safeImage = escapeHtml(ogImage || `${SITE_URL}/logo-1024.png`)
   const type = ogType || 'website'
 
   return `<!DOCTYPE html>
@@ -85,14 +90,14 @@ export function pageShell({ title, description, canonical, ogImage, ogType, body
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${safeTitle} — LoomLance</title>
     <meta name="description" content="${safeDescription}">
-    <link rel="canonical" href="${canonical}">
+    <link rel="canonical" href="${safeCanonical}">
 
     <!-- Open Graph / Twitter -->
     <meta property="og:type" content="${type}">
-    <meta property="og:url" content="${canonical}">
+    <meta property="og:url" content="${safeCanonical}">
     <meta property="og:title" content="${safeTitle}">
     <meta property="og:description" content="${safeDescription}">
-    <meta property="og:image" content="${image}">
+    <meta property="og:image" content="${safeImage}">
     <meta property="og:site_name" content="LoomLance">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="${safeTitle}">
@@ -219,7 +224,8 @@ ${bodyHtml}
 }
 
 function postRowHtml(post) {
-  const href = postHref(post)
+  // postHref output lands in href="..." attributes — escape it for that context.
+  const href = escapeHtml(postHref(post))
   const external = isExternal(post)
   const linkAttrs = external ? ' target="_blank" rel="noopener"' : ''
   const titleSafe = escapeHtml(post.title)
