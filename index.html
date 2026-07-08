@@ -13,12 +13,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoomLance — Weave it all together</title>
     <meta name="description" content="The developer-first platform for freelancers: clients, projects, contracts, invoicing, time, expenses, and reports — in one place.">
+    <link rel="canonical" href="https://loomlance.com/">
     <link rel="icon" href="logo.png">
+
+    <!-- Open Graph / Twitter Card: rich previews when the URL is shared. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LoomLance">
+    <meta property="og:url" content="https://loomlance.com/">
+    <meta property="og:title" content="LoomLance — the developer-first freelance platform">
+    <meta property="og:description" content="Now with GitHub integration. Connect your repos to projects; run clients, contracts, invoicing, time, and expenses without leaving your workflow.">
+    <meta property="og:image" content="https://loomlance.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LoomLance — the developer-first freelance platform">
+    <meta name="twitter:description" content="Now with GitHub integration. Connect your repos to projects; run the whole business side without leaving your workflow.">
+    <meta name="twitter:image" content="https://loomlance.com/og-image.png">
+
+    <!-- Structured data: helps search engines understand the product. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "LoomLance",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://loomlance.com/",
+      "description": "The developer-first platform for freelancers: clients, projects, contracts, invoicing, time, expenses, and reports — with GitHub integration — in one place.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Solo plan — free forever, no credit card."
+      }
+    }
+    </script>
+
     <link rel="stylesheet" href="app.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Pinned + SRI (was lucide@latest — an unpinned CDN dropped the github glyph on us; see audit). -->
+    <script src="https://unpkg.com/lucide@1.23.0/dist/umd/lucide.js" integrity="sha384-+Wa97DHpWU8c+hegs3RdnMeiaEIS6PXASszOAv8jXPHZhM2Sfqxb1dEpp7SGC7UG" crossorigin="anonymous"></script>
 </head>
 <body class="bg-bg text-fg">
 
