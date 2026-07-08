@@ -5,6 +5,13 @@
     <link>https://loomlance.com/blog</link>
     <description>Feature releases, product updates, and press from the LoomLance team.</description>
     <item>
+      <title>“Can you just add one more thing?”</title>
+      <link>https://loomlance.com/blog/scope-creep-change-requests</link>
+      <pubDate>Wed, 08 Jul 2026 17:18:18 GMT</pubDate>
+      <description>Every freelancer knows the &quot;can you just add one more thing&quot; message. Change requests let you name the extra work, have your client approve it on a link, and turn it into an invoice.</description>
+      <guid isPermaLink="true">https://loomlance.com/blog/scope-creep-change-requests</guid>
+    </item>
+    <item>
       <title>GitHub integration is here</title>
       <link>https://loomlance.com/blog/github-integration-is-here</link>
       <pubDate>Wed, 08 Jul 2026 15:11:23 GMT</pubDate>
