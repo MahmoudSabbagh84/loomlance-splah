@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPWEBECZBQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DPWEBECZBQ');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Integration for Freelancers — Bill the Work You Ship | LoomLance</title>
+    <meta name="description" content="Connect your GitHub repos and issues to your freelance projects. Pull issues into a kanban, reference task keys in smart-commits, and invoice the work you actually shipped, without leaving your workflow.">
+    <link rel="canonical" href="https://loomlance.com/github-for-freelancers">
+
+    <!-- Open Graph / Twitter Card -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LoomLance">
+    <meta property="og:url" content="https://loomlance.com/github-for-freelancers">
+    <meta property="og:title" content="GitHub Integration for Freelancers — Bill the Work You Ship">
+    <meta property="og:description" content="The only freelance platform with native GitHub. Connect repos, pull issues into your board, and let smart-commits link the code you ship to the invoices you send.">
+    <meta property="og:image" content="https://loomlance.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GitHub Integration for Freelancers — LoomLance">
+    <meta name="twitter:description" content="Connect repos, pull GitHub issues into your kanban, and invoice the work you actually shipped, without leaving your workflow.">
+    <meta name="twitter:image" content="https://loomlance.com/og-image.png">
+
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Pinned + SRI (matches index.html; never use @latest on a CDN). -->
+    <script src="https://unpkg.com/lucide@1.23.0/dist/umd/lucide.js" integrity="sha384-+Wa97DHpWU8c+hegs3RdnMeiaEIS6PXASszOAv8jXPHZhM2Sfqxb1dEpp7SGC7UG" crossorigin="anonymous" defer></script>
+
+    <!-- Structured data: breadcrumb + FAQ (answers mirror the visible FAQ below). -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://loomlance.com/" },
+            { "@type": "ListItem", "position": 2, "name": "GitHub for freelancers", "item": "https://loomlance.com/github-for-freelancers" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Does LoomLance's GitHub integration work with private repositories?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. You connect GitHub through the official app and choose exactly which repositories LoomLance can see (public or private). You can link a repo to a project and revoke access anytime from your settings." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I have to change how I write commits?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Smart-commits are optional. When you want a commit to link to a task, just reference its task key (for example LOO-42) in the commit message. Everything else about your workflow stays exactly the same." }
+            },
+            {
+              "@type": "Question",
+              "name": "Which plans include GitHub integration?",
+              "acceptedAnswer": { "@type": "Answer", "text": "GitHub integration is included on the Freelancer and Studio plans, both of which come with a 14-day free trial. The free Solo plan covers clients, contracts, and invoicing; upgrade when you want your repos connected." }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I turn GitHub issues into billable work?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. GitHub issues from a linked repo appear in your LoomLance project board, where you can track time against them and roll that tracked time straight into an invoice, so the work you shipped is the work you bill." }
+            },
+            {
+              "@type": "Question",
+              "name": "Does it work with GitLab?",
+              "acceptedAnswer": { "@type": "Answer", "text": "GitLab support is on the way. Today the native integration is GitHub; GitLab is next on the roadmap alongside income forecasting." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="bg-bg text-fg">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 border-b border-border bg-bg-elevated">
+      <nav class="section flex h-16 items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+          <img src="logo.png" alt="" class="size-8">
+          <span class="text-lg font-bold tracking-tight"><span class="text-fg">Loom</span><span class="text-primary">Lance</span></span>
+        </a>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <a href="/#features" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Features</a>
+          <a href="/pricing" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Pricing</a>
+          <a href="/blog" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Blog</a>
+          <a href="/#about" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">About</a>
+          <a href="/contact" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Contact</a>
+          <a href="/signin" class="hidden rounded-md px-3 py-2 text-sm font-medium text-fg-muted hover:text-fg sm:block">Sign in</a>
+          <a href="/signup" class="btn-primary">Get started</a>
+          <button id="menuBtn" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" class="grid size-10 place-items-center rounded-md text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg sm:hidden">
+            <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            <svg id="closeIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="hidden border-t border-border bg-bg-elevated sm:hidden">
+        <nav class="section flex flex-col py-2">
+          <a href="/#features" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Features</a>
+          <a href="/pricing" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Pricing</a>
+          <a href="/blog" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Blog</a>
+          <a href="/#about" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">About</a>
+          <a href="/contact" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Contact</a>
+          <a href="/signin" class="rounded-md px-3 py-3 text-sm font-medium text-fg-muted hover:bg-bg-muted hover:text-fg">Sign in</a>
+          <a href="/signup" class="btn-primary mt-2">Get started</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+    <!-- Hero (dark) -->
+    <section class="relative overflow-hidden bg-[#0B0E14] text-white">
+      <div class="pointer-events-none absolute -top-32 left-1/2 size-[40rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.30),transparent_70%)] blur-2xl"></div>
+      <div class="section relative py-20 lg:py-28">
+        <nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/50">
+          <a href="/" class="hover:text-white/80">Home</a> <span class="px-1">/</span> <span class="text-white/80">GitHub for freelancers</span>
+        </nav>
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
+            <i data-lucide="git-branch" class="size-3.5"></i> GitHub integration
+          </span>
+          <h1 class="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+            GitHub for freelancers.<br>Bill the work you ship.
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg text-white/70">
+            LoomLance is the only freelance platform with native GitHub. Connect your repos, pull issues into your project board, and let smart-commits link the code you ship to the invoices you send, without ever leaving your workflow.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="/signup?plan=freelancer" class="btn-primary px-5 py-3 text-base">Start your 14-day trial</a>
+            <a href="/pricing" class="btn px-5 py-3 text-base border border-white/20 text-white hover:bg-white/10">See plans</a>
+          </div>
+          <p class="mt-4 text-xs text-white/50">GitHub integration is on the Freelancer &amp; Studio plans · cancel anytime</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem (light) -->
+    <section class="bg-bg py-20 lg:py-28">
+      <div class="section grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Your code lives in GitHub. Your business lives everywhere else.</h2>
+          <p class="mt-4 text-lg text-fg-muted">Most freelance tools treat your development work as a black box. You ship in GitHub, then re-type what you did into a time tracker, a task board, and an invoice. Three more tabs, three more chances to under-bill.</p>
+          <p class="mt-4 text-fg-muted">Purpose-built GitHub add-ons only solve one slice: a time tracker on your issues, or an invoice generator from your commits. You still end up stitching five tools together. LoomLance closes the loop, so the work you do in GitHub becomes the work you manage, track, and bill, all in one place.</p>
+        </div>
+        <div class="grid gap-4">
+          <div class="card flex items-start gap-3">
+            <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="layers"></i></div>
+            <div><h3 class="font-semibold">One tool, not five</h3><p class="mt-0.5 text-sm text-fg-muted">Clients, contracts, invoicing, time, and expenses, with GitHub native, not bolted on.</p></div>
+          </div>
+          <div class="card flex items-start gap-3">
+            <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="link"></i></div>
+            <div><h3 class="font-semibold">Shipped work = billed work</h3><p class="mt-0.5 text-sm text-fg-muted">Commits and issues connect to tasks, so nothing you build slips through un-invoiced.</p></div>
+          </div>
+          <div class="card flex items-start gap-3">
+            <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="terminal"></i></div>
+            <div><h3 class="font-semibold">Stay in your workflow</h3><p class="mt-0.5 text-sm text-fg-muted">Reference a task key in a commit and move on. No context-switching tax.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works (muted) -->
+    <section class="bg-bg-muted py-20 lg:py-28">
+      <div class="section">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">How LoomLance connects to GitHub</h2>
+          <p class="mt-4 text-lg text-fg-muted">Three steps from repo to paid invoice.</p>
+        </div>
+        <div class="mt-14 grid gap-4 lg:grid-cols-3">
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <span class="grid size-8 shrink-0 place-items-center rounded-full bg-primary text-sm font-bold text-primary-fg">1</span>
+              <h3 class="font-semibold">Connect your repos</h3>
+            </div>
+            <p class="mt-3 text-sm text-fg-muted">Install the GitHub app and pick exactly which repositories LoomLance can see (public or private). Link a repo to a project in a couple of clicks, and revoke access anytime.</p>
+          </div>
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <span class="grid size-8 shrink-0 place-items-center rounded-full bg-primary text-sm font-bold text-primary-fg">2</span>
+              <h3 class="font-semibold">Pull issues into your board</h3>
+            </div>
+            <p class="mt-3 text-sm text-fg-muted">GitHub issues from a linked repo show up in your project kanban, alongside your other tasks. Work them in one place and track time against each one.</p>
+          </div>
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <span class="grid size-8 shrink-0 place-items-center rounded-full bg-primary text-sm font-bold text-primary-fg">3</span>
+              <h3 class="font-semibold">Smart-commits that bill</h3>
+            </div>
+            <p class="mt-3 text-sm text-fg-muted">Reference a task key like <code class="rounded bg-bg-muted px-1 py-0.5 text-xs">LOO-42</code> in a commit message. The commit links to the task, and the tracked time rolls into an invoice: the work you shipped is the work you bill.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What you get (light) -->
+    <section class="bg-bg py-20 lg:py-28">
+      <div class="section">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Everything the integration unlocks</h2>
+        </div>
+        <div class="mt-14 grid gap-4 sm:grid-cols-2">
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="folder-git-2"></i></div>
+              <h3 class="font-semibold">Repos → projects</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">Link a repository to a LoomLance project so the code, the client, and the billing all live under one roof.</p>
+          </div>
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="kanban"></i></div>
+              <h3 class="font-semibold">Issues in your kanban</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">GitHub issues become cards on your board, with no duplicate task lists and no copy-paste.</p>
+          </div>
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="git-commit-horizontal"></i></div>
+              <h3 class="font-semibold">Smart-commits with task keys</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">A task key in your commit message links the exact change to the task it belongs to: an audit trail from code to invoice.</p>
+          </div>
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <div class="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><i data-lucide="receipt"></i></div>
+              <h3 class="font-semibold">Time → invoice</h3>
+            </div>
+            <p class="mt-2 text-sm text-fg-muted">Track time on issues and turn those hours into a branded invoice in one click, with a public pay page.</p>
+          </div>
+        </div>
+        <p class="mt-8 text-center text-sm text-fg-subtle">Prefer to see it in the wider workflow? <a href="/blog/github-integration-is-here" class="font-medium text-primary hover:underline">Read how GitHub integration works</a> or explore <a href="/#features" class="font-medium text-primary hover:underline">all features</a>.</p>
+      </div>
+    </section>
+
+    <!-- FAQ (muted) -->
+    <section class="bg-bg-muted py-20 lg:py-24">
+      <div class="section max-w-3xl">
+        <h2 class="text-center text-3xl font-bold tracking-tight sm:text-4xl">GitHub integration FAQ</h2>
+        <div class="mt-10 space-y-3">
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Does it work with private repositories?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">Yes. You connect GitHub through the official app and choose exactly which repositories LoomLance can see (public or private). You can link a repo to a project and revoke access anytime from your settings.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Do I have to change how I write commits?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">No. Smart-commits are optional. When you want a commit to link to a task, just reference its task key (for example LOO-42) in the commit message. Everything else about your workflow stays exactly the same.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Which plans include GitHub integration?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">GitHub integration is included on the Freelancer and Studio plans, both of which come with a 14-day free trial. The free Solo plan covers clients, contracts, and invoicing; upgrade when you want your repos connected.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Can I turn GitHub issues into billable work?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">Yes. GitHub issues from a linked repo appear in your LoomLance project board, where you can track time against them and roll that tracked time straight into an invoice, so the work you shipped is the work you bill.</p>
+          </details>
+          <details class="card group">
+            <summary class="flex cursor-pointer items-center justify-between font-semibold list-none [&::-webkit-details-marker]:hidden">Does it work with GitLab?<i data-lucide="chevron-down" class="size-5 text-fg-muted transition-transform group-open:rotate-180"></i></summary>
+            <p class="mt-3 text-sm text-fg-muted">GitLab support is on the way. Today the native integration is GitHub; GitLab is next on the roadmap alongside income forecasting.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA band (dark) -->
+    <section class="bg-[#0B0E14] text-white">
+      <div class="section py-16 text-center">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Connect your repos. Bill what you ship.</h2>
+        <p class="mx-auto mt-3 max-w-xl text-white/70">Start a 14-day trial of Freelancer, or explore LoomLance free on Solo. No lock-in, cancel anytime.</p>
+        <div class="mt-7 flex flex-col items-center gap-2">
+          <a href="/signup?plan=freelancer" class="btn-primary px-6 py-3 text-base">Start your free trial</a>
+          <p class="text-xs text-white/50">14-day trial on paid plans · Solo is free forever</p>
+        </div>
+      </div>
+    </section>
+
+    </main>
+
+    <!-- Footer (dark) -->
+    <footer class="bg-[#070A0F] text-white/70">
+      <div class="section grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <div class="text-lg font-bold tracking-tight text-white">Loom<span class="text-accent">Lance</span></div>
+          <p class="mt-2 text-sm text-white/50">Weave it all together.</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Product</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="/#features" class="hover:text-white">Features</a></li>
+            <li><a href="/github-for-freelancers" class="hover:text-white">GitHub for freelancers</a></li>
+            <li><a href="/pricing" class="hover:text-white">Pricing</a></li>
+            <li><a href="/blog" class="hover:text-white">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Company</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="/#about" class="hover:text-white">About</a></li>
+            <li><a href="/contact" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white">Get started</h4>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><a href="/signup" class="hover:text-white">Create account</a></li>
+            <li><a href="/signin" class="hover:text-white">Sign in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div class="section flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/40 sm:flex-row">
+          <span>© 2026 LoomLance. All rights reserved.</span>
+          <span class="flex gap-4">
+            <a href="/terms" class="hover:text-white/70">Terms</a>
+            <a href="/privacy" class="hover:text-white/70">Privacy</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      window.addEventListener('load', function () {
+        if (typeof lucide !== 'undefined') lucide.createIcons()
+      })
+    </script>
+    <script>
+      // Mobile navigation menu toggle
+      (function () {
+        var btn = document.getElementById('menuBtn')
+        var menu = document.getElementById('mobileMenu')
+        if (!btn || !menu) return
+        var menuIcon = document.getElementById('menuIcon')
+        var closeIcon = document.getElementById('closeIcon')
+        function setOpen(open) {
+          menu.classList.toggle('hidden', !open)
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false')
+          btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+          if (menuIcon) menuIcon.classList.toggle('hidden', open)
+          if (closeIcon) closeIcon.classList.toggle('hidden', !open)
+        }
+        btn.addEventListener('click', function () { setOpen(menu.classList.contains('hidden')) })
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false) })
+        menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false) }) })
+      })()
+    </script>
+</body>
+</html>

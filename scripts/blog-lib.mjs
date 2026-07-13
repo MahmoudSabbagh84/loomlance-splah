@@ -404,7 +404,7 @@ ${items}
 `
 }
 
-const STATIC_PAGES = ['/', '/pricing', '/contact', '/signin', '/signup', '/terms', '/privacy', '/blog']
+const STATIC_PAGES = ['/', '/pricing', '/github-for-freelancers', '/contact', '/signin', '/signup', '/terms', '/privacy', '/blog']
 
 // renderSitemap(posts) — urlset with the site's static pages plus one <url>
 // per internal (non-external_url) post.
