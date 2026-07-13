@@ -30,6 +30,21 @@ export function escapeXml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')
 }
 
+// Serialize data as a JSON-LD <script> block, hardened for embedding in HTML.
+// JSON.stringify alone is unsafe here: it does NOT escape `<`, so attacker-controlled
+// post fields could emit `</script>` and break out of the block. We escape the
+// HTML-significant characters (as JSON \uXXXX, which parse back to the same chars, so
+// the structured data is unchanged) and represent in-string quotes as " so no raw
+// `"` from JSON escaping can be mistaken for an HTML attribute break.
+export function jsonLdScript(data) {
+  const json = JSON.stringify(data, null, 2)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026')
+    .replace(/\\"/g, '\\u0022')
+  return `<script type="application/ld+json">\n${json}\n</script>`
+}
+
 export function renderMarkdown(md) {
   // Deliberate relaxation: `a` may carry target/rel as authored (no forced
   // rel="noopener") because post authors are trusted (admin-only CMS).
@@ -66,7 +81,7 @@ function categoryChip(category) {
 // "Blog" is added to the nav (and reads active, via the same
 // `text-primary-strong` treatment the site already uses for the current page,
 // e.g. `pricing.html`'s "Pricing" link) and to the footer's Product column.
-export function pageShell({ title, description, canonical, ogImage, ogType, bodyHtml }) {
+export function pageShell({ title, description, canonical, ogImage, ogType, bodyHtml, jsonLd }) {
   const safeTitle = escapeHtml(title)
   const safeDescription = escapeHtml(description)
   // Escape URL-ish values too: pageShell defends its own attribute contexts
@@ -108,7 +123,9 @@ export function pageShell({ title, description, canonical, ogImage, ogType, body
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Pinned + SRI (matches index.html; never use @latest on a CDN). -->
+    <script src="https://unpkg.com/lucide@1.23.0/dist/umd/lucide.js" integrity="sha384-+Wa97DHpWU8c+hegs3RdnMeiaEIS6PXASszOAv8jXPHZhM2Sfqxb1dEpp7SGC7UG" crossorigin="anonymous" defer></script>
+    ${jsonLd || ''}
 </head>
 <body class="bg-bg text-fg">
 
@@ -270,12 +287,23 @@ ${rows}
       </div>
     </section>`
 
+  const jsonLd = jsonLdScript({
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${SITE_URL}/blog`,
+    name: 'LoomLance Blog',
+    description: 'Feature releases, product updates, and press from the LoomLance team.',
+    url: `${SITE_URL}/blog`,
+    publisher: { '@type': 'Organization', name: 'LoomLance', logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo-1024.png` } },
+  })
+
   return pageShell({
     title: 'Blog',
     description: 'Feature releases, product updates, and press from the LoomLance team.',
     canonical: `${SITE_URL}/blog`,
     ogType: 'website',
     bodyHtml,
+    jsonLd,
   })
 }
 
@@ -284,10 +312,39 @@ ${rows}
 // `<article class="prose ...">`, and a "← All posts" link back to /blog.
 export function renderPostPage(post) {
   const titleSafe = escapeHtml(post.title)
+  const canonical = postHref(post)
   const dateHtml = `<time datetime="${escapeHtml(post.published_at)}">${formatDate(post.published_at)}</time>`
   const cover = post.cover_image_url
     ? `<img src="${escapeHtml(post.cover_image_url)}" alt="${titleSafe}" class="mt-8 w-full rounded-xl border border-border object-cover">`
     : ''
+
+  // Article + breadcrumb structured data. JSON.stringify handles all escaping.
+  const jsonLd = jsonLdScript({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        '@id': `${canonical}#article`,
+        headline: post.title,
+        description: post.excerpt || '',
+        image: post.cover_image_url || `${SITE_URL}/og-image.png`,
+        datePublished: post.published_at,
+        dateModified: post.published_at,
+        url: canonical,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+        author: { '@type': 'Organization', name: 'LoomLance', url: SITE_URL },
+        publisher: { '@type': 'Organization', name: 'LoomLance', logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo-1024.png` } },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+          { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+        ],
+      },
+    ],
+  })
 
   const bodyHtml = `    <div class="section max-w-3xl py-16 lg:py-20">
       <a href="/blog" class="inline-flex items-center gap-1 text-sm font-medium text-fg-muted hover:text-fg">&larr; All posts</a>
@@ -308,10 +365,11 @@ ${renderMarkdown(post.body_md)}
   return pageShell({
     title: post.title,
     description: post.excerpt || '',
-    canonical: postHref(post),
+    canonical,
     ogImage: post.cover_image_url || undefined,
     ogType: 'article',
     bodyHtml,
+    jsonLd,
   })
 }
 

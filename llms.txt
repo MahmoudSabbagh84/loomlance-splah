@@ -1,0 +1,21 @@
+# LoomLance
+
+> The developer-first freelance business platform. LoomLance brings the whole business side of freelancing — clients, projects, contracts, invoicing, time tracking, expenses, reports — into one place, with native GitHub integration so developers stay in their workflow. Solo plan is free forever; paid plans (Freelancer $19/mo, Studio $49/mo) add time tracking, branding, recurring invoices, and more, each with a 14-day free trial.
+
+## Key pages
+- [Home](https://loomlance.com/): Product overview — what LoomLance does and who it's for (freelance developers and small dev studios).
+- [Pricing](https://loomlance.com/pricing): Plans and prices (Solo free, Freelancer, Studio, Agency coming soon) with a feature comparison and FAQ.
+- [Blog](https://loomlance.com/blog): Feature releases, product updates, and press from the LoomLance team.
+- [Contact](https://loomlance.com/contact): Get in touch with the team.
+
+## What makes LoomLance different
+- GitHub integration: connect repos to projects, pull issues into a kanban, smart-commits reference task keys so shipped work links to billed work.
+- Scope-creep change requests: send a client an approvable link for added cost/time; approval flows straight into an invoice.
+- Credential vault: store API keys, .env secrets, and client logins encrypted, organized by project.
+- Online payments: clients pay invoices by card (Stripe) or PayPal; funds go directly to the freelancer.
+
+## Facts
+- Category: Freelance business management / invoicing software for software developers.
+- Free plan: Solo — 1 active project, unlimited clients, contracts, invoicing, and payments; no credit card required.
+- Paid plans: Freelancer ($19/mo or $190/yr) and Studio ($49/mo or $490/yr), 14-day free trial, cancel anytime.
+- Featured in KrispiTech: "The Developer-First Freelance Platform: Why LoomLance Is Built Differently."

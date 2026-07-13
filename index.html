@@ -11,7 +11,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoomLance — Weave it all together</title>
+    <title>LoomLance — The Freelance Platform Built for Developers</title>
     <meta name="description" content="The developer-first platform for freelancers: clients, projects, contracts, invoicing, time, expenses, and reports — in one place.">
     <link rel="canonical" href="https://loomlance.com/">
     <link rel="icon" href="logo.png">
@@ -49,12 +49,36 @@
     }
     </script>
 
+    <!-- Organization + WebSite entity graph -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://loomlance.com/#organization",
+          "name": "LoomLance",
+          "url": "https://loomlance.com/",
+          "logo": "https://loomlance.com/logo-1024.png",
+          "description": "The developer-first freelance business platform: clients, projects, contracts, invoicing, time, expenses, and reports — with GitHub integration — in one place."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://loomlance.com/#website",
+          "name": "LoomLance",
+          "url": "https://loomlance.com/",
+          "publisher": { "@id": "https://loomlance.com/#organization" }
+        }
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="app.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Pinned + SRI (was lucide@latest — an unpinned CDN dropped the github glyph on us; see audit). -->
-    <script src="https://unpkg.com/lucide@1.23.0/dist/umd/lucide.js" integrity="sha384-+Wa97DHpWU8c+hegs3RdnMeiaEIS6PXASszOAv8jXPHZhM2Sfqxb1dEpp7SGC7UG" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/lucide@1.23.0/dist/umd/lucide.js" integrity="sha384-+Wa97DHpWU8c+hegs3RdnMeiaEIS6PXASszOAv8jXPHZhM2Sfqxb1dEpp7SGC7UG" crossorigin="anonymous" defer></script>
 </head>
 <body class="bg-bg text-fg">
 
@@ -105,8 +129,9 @@
             <span class="size-1.5 rounded-full bg-accent"></span> Now with GitHub integration
           </span>
           <h1 class="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-            Code. Ship.<br>Get paid. Repeat.
+            The freelance platform<br>for developers.
           </h1>
+          <p class="mt-3 text-2xl font-extrabold tracking-tight text-accent sm:text-3xl">Code. Ship. Get paid. Repeat.</p>
           <p class="mt-5 max-w-xl text-lg text-white/70">
             The only freelance platform that connects your GitHub repos and issues to your projects. Time, invoices, and the whole business side live where you already work, so you stay in your IDE.
           </p>
